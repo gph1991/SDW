@@ -46,7 +46,8 @@ static char imageURLKey;
     //存储对象
     objc_setAssociatedObject(self, &imageURLKey, url, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 
-    if (!(options & SDWebImageDelayPlaceholder)) {
+    if (!(options & SDWebImageDelayPlaceholder))
+    {
         //options 非SDWebImageDelayPlaceholder就加载占位图
         self.image = placeholder;
     }

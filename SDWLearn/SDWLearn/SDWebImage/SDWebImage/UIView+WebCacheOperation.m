@@ -35,14 +35,20 @@ static char loadOperationKey;
     // Cancel in progress downloader from queue
     NSMutableDictionary *operationDictionary = [self operationDictionary];
     id operations = [operationDictionary objectForKey:key];
-    if (operations) {
-        if ([operations isKindOfClass:[NSArray class]]) {
-            for (id <SDWebImageOperation> operation in operations) {
-                if (operation) {
+    if (operations)
+    {
+        if ([operations isKindOfClass:[NSArray class]])
+        {
+            for (id <SDWebImageOperation> operation in operations)
+            {
+                if (operation)
+                {
                     [operation cancel];
                 }
             }
-        } else if ([operations conformsToProtocol:@protocol(SDWebImageOperation)]){
+        }
+        else if ([operations conformsToProtocol:@protocol(SDWebImageOperation)])
+        {
             [(id<SDWebImageOperation>) operations cancel];
         }
         [operationDictionary removeObjectForKey:key];

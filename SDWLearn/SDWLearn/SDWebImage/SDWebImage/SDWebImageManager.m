@@ -111,14 +111,17 @@
 - (id <SDWebImageOperation>)downloadImageWithURL:(NSURL *)url
                                          options:(SDWebImageOptions)options
                                         progress:(SDWebImageDownloaderProgressBlock)progressBlock
-                                       completed:(SDWebImageCompletionWithFinishedBlock)completedBlock {
+                                       completed:(SDWebImageCompletionWithFinishedBlock)completedBlock
+{
     NSParameterAssert(completedBlock);
 
-    if ([url isKindOfClass:NSString.class]) {
+    if ([url isKindOfClass:NSString.class])
+    {
         url = [NSURL URLWithString:(NSString *)url];
     }
 
-    if (![url isKindOfClass:NSURL.class]) {
+    if (![url isKindOfClass:NSURL.class])
+    {
         url = nil;
     }
 
@@ -336,23 +339,31 @@
 
 - (void)setCancelBlock:(SDWebImageNoParamsBlock)cancelBlock {
     // check if the operation is already cancelled, then we just call the cancelBlock
-    if (self.isCancelled) {
-        if (cancelBlock) {
+    if (self.isCancelled)
+    {
+        if (cancelBlock)
+        {
             cancelBlock();
         }
         _cancelBlock = nil; // don't forget to nil the cancelBlock, otherwise we will get crashes
-    } else {
+    }
+    else
+    {
         _cancelBlock = [cancelBlock copy];
     }
 }
 
-- (void)cancel {
+- (void)cancel
+{
     self.cancelled = YES;
-    if (self.cacheOperation) {
+    if (self.cacheOperation)
+    {
         [self.cacheOperation cancel];
         self.cacheOperation = nil;
     }
-    if (self.cancelBlock) {
+    
+    if (self.cancelBlock)
+    {
         self.cancelBlock();
         
         // TODO: this is a temporary fix to #809.
