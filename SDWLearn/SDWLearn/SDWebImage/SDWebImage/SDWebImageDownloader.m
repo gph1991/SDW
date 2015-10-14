@@ -79,28 +79,35 @@ static NSString *const kCompletedCallbackKey = @"completed";
     SDDispatchQueueRelease(_barrierQueue);
 }
 
-- (void)setValue:(NSString *)value forHTTPHeaderField:(NSString *)field {
-    if (value) {
+- (void)setValue:(NSString *)value forHTTPHeaderField:(NSString *)field
+{
+    if (value)
+    {
         self.HTTPHeaders[field] = value;
     }
-    else {
+    else
+    {
         [self.HTTPHeaders removeObjectForKey:field];
     }
 }
 
-- (NSString *)valueForHTTPHeaderField:(NSString *)field {
+- (NSString *)valueForHTTPHeaderField:(NSString *)field
+{
     return self.HTTPHeaders[field];
 }
 
-- (void)setMaxConcurrentDownloads:(NSInteger)maxConcurrentDownloads {
+- (void)setMaxConcurrentDownloads:(NSInteger)maxConcurrentDownloads
+{
     _downloadQueue.maxConcurrentOperationCount = maxConcurrentDownloads;
 }
 
-- (NSUInteger)currentDownloadCount {
+- (NSUInteger)currentDownloadCount
+{
     return _downloadQueue.operationCount;
 }
 
-- (NSInteger)maxConcurrentDownloads {
+- (NSInteger)maxConcurrentDownloads
+{
     return _downloadQueue.maxConcurrentOperationCount;
 }
 
