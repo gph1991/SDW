@@ -167,7 +167,9 @@
             return;
         }
         
-        //协议不响应默认为NO 。没有缓存，或者是强制刷新
+        //没有缓存，或者是强制刷新,就开始下载
+        //协议不响应默认为NO
+        
         if ((!image || options & SDWebImageRefreshCached) && (![self.delegate respondsToSelector:@selector(imageManager:shouldDownloadImageForURL:)] || [self.delegate imageManager:self shouldDownloadImageForURL:url]))
         {
             //cached and force refresh;
@@ -224,7 +226,7 @@
                 }
                 else
                 {
-                    //是否只缓存在内存
+                    //是否缓存在磁盘
                     BOOL cacheOnDisk = !(options & SDWebImageCacheMemoryOnly);
 
                     if (options & SDWebImageRefreshCached && image && !downloadedImage)
@@ -299,7 +301,8 @@
         {
             // Image not in cache and download disallowed by delegate
             dispatch_main_sync_safe(^{
-                if (!weakOperation.isCancelled) {
+                if (!weakOperation.isCancelled)
+                {
                     completedBlock(nil, nil, SDImageCacheTypeNone, YES, url);
                 }
             });
