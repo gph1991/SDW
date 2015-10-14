@@ -220,20 +220,24 @@ BOOL ImageDataHasPNGPreffix(NSData *data) {
     });
 }
 
-- (UIImage *)imageFromMemoryCacheForKey:(NSString *)key {
+- (UIImage *)imageFromMemoryCacheForKey:(NSString *)key
+{
     return [self.memCache objectForKey:key];
 }
 
-- (UIImage *)imageFromDiskCacheForKey:(NSString *)key {
+- (UIImage *)imageFromDiskCacheForKey:(NSString *)key
+{
     // First check the in-memory cache...
     UIImage *image = [self imageFromMemoryCacheForKey:key];
-    if (image) {
+    if (image)
+    {
         return image;
     }
 
     // Second check the disk cache...
     UIImage *diskImage = [self diskImageForKey:key];
-    if (diskImage) {
+    if (diskImage)
+    {
         CGFloat cost = diskImage.size.height * diskImage.size.width * diskImage.scale;
         [self.memCache setObject:diskImage forKey:key cost:cost];
     }
@@ -241,17 +245,21 @@ BOOL ImageDataHasPNGPreffix(NSData *data) {
     return diskImage;
 }
 
-- (NSData *)diskImageDataBySearchingAllPathsForKey:(NSString *)key {
+- (NSData *)diskImageDataBySearchingAllPathsForKey:(NSString *)key
+{
     NSString *defaultPath = [self defaultCachePathForKey:key];
     NSData *data = [NSData dataWithContentsOfFile:defaultPath];
-    if (data) {
+    if (data)
+    {
         return data;
     }
 
-    for (NSString *path in self.customPaths) {
+    for (NSString *path in self.customPaths)
+    {
         NSString *filePath = [self cachePathForKey:key inPath:path];
         NSData *imageData = [NSData dataWithContentsOfFile:filePath];
-        if (imageData) {
+        if (imageData)
+        {
             return imageData;
         }
     }
@@ -259,29 +267,36 @@ BOOL ImageDataHasPNGPreffix(NSData *data) {
     return nil;
 }
 
-- (UIImage *)diskImageForKey:(NSString *)key {
+- (UIImage *)diskImageForKey:(NSString *)key
+{
     NSData *data = [self diskImageDataBySearchingAllPathsForKey:key];
-    if (data) {
+    if (data)
+    {
         UIImage *image = [UIImage sd_imageWithData:data];
         image = [self scaledImageForKey:key image:image];
         image = [UIImage decodedImageWithImage:image];
         return image;
     }
-    else {
+    else
+    {
         return nil;
     }
 }
 
-- (UIImage *)scaledImageForKey:(NSString *)key image:(UIImage *)image {
+- (UIImage *)scaledImageForKey:(NSString *)key image:(UIImage *)image
+{
     return SDScaledImageForKey(key, image);
 }
 
-- (NSOperation *)queryDiskCacheForKey:(NSString *)key done:(SDWebImageQueryCompletedBlock)doneBlock {
-    if (!doneBlock) {
+- (NSOperation *)queryDiskCacheForKey:(NSString *)key done:(SDWebImageQueryCompletedBlock)doneBlock
+{
+    if (!doneBlock)
+    {
         return nil;
     }
 
-    if (!key) {
+    if (!key)
+    {
         doneBlock(nil, SDImageCacheTypeNone);
         return nil;
     }
@@ -289,21 +304,24 @@ BOOL ImageDataHasPNGPreffix(NSData *data) {
     //内存缓存
     // First check the in-memory cache...
     UIImage *image = [self imageFromMemoryCacheForKey:key];
-    if (image) {
+    if (image)
+    {
         doneBlock(image, SDImageCacheTypeMemory);
         return nil;
     }
 
     NSOperation *operation = [NSOperation new];
     dispatch_async(self.ioQueue, ^{
-        if (operation.isCancelled) {
+        if (operation.isCancelled)
+        {
             return;
         }
 
         //磁盘缓存
         @autoreleasepool {
             UIImage *diskImage = [self diskImageForKey:key];
-            if (diskImage) {
+            if (diskImage)
+            {
                 CGFloat cost = diskImage.size.height * diskImage.size.width * diskImage.scale;
                 [self.memCache setObject:diskImage forKey:key cost:cost];
             }
@@ -317,11 +335,13 @@ BOOL ImageDataHasPNGPreffix(NSData *data) {
     return operation;
 }
 
-- (void)removeImageForKey:(NSString *)key {
+- (void)removeImageForKey:(NSString *)key
+{
     [self removeImageForKey:key withCompletion:nil];
 }
 
-- (void)removeImageForKey:(NSString *)key withCompletion:(SDWebImageNoParamsBlock)completion {
+- (void)removeImageForKey:(NSString *)key withCompletion:(SDWebImageNoParamsBlock)completion
+{
     [self removeImageForKey:key fromDisk:YES withCompletion:completion];
 }
 
@@ -329,43 +349,53 @@ BOOL ImageDataHasPNGPreffix(NSData *data) {
     [self removeImageForKey:key fromDisk:fromDisk withCompletion:nil];
 }
 
-- (void)removeImageForKey:(NSString *)key fromDisk:(BOOL)fromDisk withCompletion:(SDWebImageNoParamsBlock)completion {
+- (void)removeImageForKey:(NSString *)key fromDisk:(BOOL)fromDisk withCompletion:(SDWebImageNoParamsBlock)completion
+{
     
-    if (key == nil) {
+    if (key == nil)
+    {
         return;
     }
     
     [self.memCache removeObjectForKey:key];
     
-    if (fromDisk) {
+    if (fromDisk)
+    {
         dispatch_async(self.ioQueue, ^{
             [_fileManager removeItemAtPath:[self defaultCachePathForKey:key] error:nil];
             
-            if (completion) {
+            if (completion)
+            {
                 dispatch_async(dispatch_get_main_queue(), ^{
                     completion();
                 });
             }
         });
-    } else if (completion){
+    }
+    else if (completion)
+    {
         completion();
     }
     
 }
 
-- (void)setMaxMemoryCost:(NSUInteger)maxMemoryCost {
+- (void)setMaxMemoryCost:(NSUInteger)maxMemoryCost
+{
     self.memCache.totalCostLimit = maxMemoryCost;
 }
 
-- (NSUInteger)maxMemoryCost {
+- (NSUInteger)maxMemoryCost
+{
     return self.memCache.totalCostLimit;
 }
 
-- (void)clearMemory {
+- (void)clearMemory
+{
     [self.memCache removeAllObjects];
 }
 
-- (void)clearDisk {
+- (void)clearDisk
+{
     [self clearDiskOnCompletion:nil];
 }
 
@@ -378,7 +408,8 @@ BOOL ImageDataHasPNGPreffix(NSData *data) {
                                  attributes:nil
                                       error:NULL];
 
-        if (completion) {
+        if (completion)
+        {
             dispatch_async(dispatch_get_main_queue(), ^{
                 completion();
             });

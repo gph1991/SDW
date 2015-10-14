@@ -167,7 +167,7 @@
             return;
         }
         
-        //没有缓存，或者是强制刷新,就开始下载
+        //1没有缓存，2或者强制刷新,就开始下载。当前为1
         //协议不响应默认为NO
         
         if ((!image || options & SDWebImageRefreshCached) && (![self.delegate respondsToSelector:@selector(imageManager:shouldDownloadImageForURL:)] || [self.delegate imageManager:self shouldDownloadImageForURL:url]))
@@ -199,7 +199,7 @@
                 downloaderOptions |= SDWebImageDownloaderIgnoreCachedResponse;
             }
             
-            //to download image
+            //start download image task
             id <SDWebImageOperation> subOperation = [self.imageDownloader downloadImageWithURL:url options:downloaderOptions progress:progressBlock completed:^(UIImage *downloadedImage, NSData *data, NSError *error, BOOL finished)
             {
                 if (weakOperation.isCancelled)
@@ -293,6 +293,7 @@
                     completedBlock(image, nil, cacheType, YES, url);
                 }
             });
+            
             @synchronized (self.runningOperations) {
                 [self.runningOperations removeObject:operation];
             }
