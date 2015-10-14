@@ -1,12 +1,12 @@
 //
-//  ViewController.h
+//  Module.h
 //  SDWLearn
 //
 //  Created by Product Division 1 on 15/10/13.
-//  Copyright (c) 2015年 gph. All rights reserved.
+//  Copyright © 2015年 gph. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
 
 /*!
@@ -44,8 +44,6 @@
  NSURLResponse class to aid in this work.
  */
 
-@interface ViewController : UIViewController
-
+@interface Module : NSObject
 
 @end
-

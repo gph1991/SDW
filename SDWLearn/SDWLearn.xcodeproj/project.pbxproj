@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		516EC3FA1BCCF35700014138 /* Module.m in Sources */ = {isa = PBXBuildFile; fileRef = 516EC3F91BCCF35700014138 /* Module.m */; settings = {ASSET_TAGS = (); }; };
 		51BE76BD1BCC95EB00CE5A62 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 51BE76BC1BCC95EB00CE5A62 /* main.m */; };
 		51BE76C01BCC95EB00CE5A62 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 51BE76BF1BCC95EB00CE5A62 /* AppDelegate.m */; };
 		51BE76C31BCC95EB00CE5A62 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 51BE76C21BCC95EB00CE5A62 /* ViewController.m */; };
@@ -45,6 +46,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		516EC3F81BCCF35700014138 /* Module.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Module.h; sourceTree = "<group>"; };
+		516EC3F91BCCF35700014138 /* Module.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Module.m; sourceTree = "<group>"; };
 		51BE76B71BCC95EB00CE5A62 /* SDWLearn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SDWLearn.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		51BE76BB1BCC95EB00CE5A62 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		51BE76BC1BCC95EB00CE5A62 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -136,6 +139,8 @@
 			children = (
 				51BE76E01BCC960000CE5A62 /* SDWebImage */,
 				51BE76BE1BCC95EB00CE5A62 /* AppDelegate.h */,
+				516EC3F81BCCF35700014138 /* Module.h */,
+				516EC3F91BCCF35700014138 /* Module.m */,
 				51BE76BF1BCC95EB00CE5A62 /* AppDelegate.m */,
 				51BE76C11BCC95EB00CE5A62 /* ViewController.h */,
 				51BE76C21BCC95EB00CE5A62 /* ViewController.m */,
@@ -327,6 +332,7 @@
 				51BE77141BCC960000CE5A62 /* UIImageView+HighlightedWebCache.m in Sources */,
 				51BE77121BCC960000CE5A62 /* UIImage+MultiFormat.m in Sources */,
 				51BE770D1BCC960000CE5A62 /* SDWebImageDownloaderOperation.m in Sources */,
+				516EC3FA1BCCF35700014138 /* Module.m in Sources */,
 				51BE76C31BCC95EB00CE5A62 /* ViewController.m in Sources */,
 				51BE770A1BCC960000CE5A62 /* SDWebImageCompat.m in Sources */,
 				51BE77111BCC960000CE5A62 /* UIImage+GIF.m in Sources */,
@@ -540,6 +546,7 @@
 				51BE76DC1BCC95EC00CE5A62 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		51BE76DD1BCC95EC00CE5A62 /* Build configuration list for PBXNativeTarget "SDWLearnTests" */ = {
 			isa = XCConfigurationList;
@@ -548,6 +555,7 @@
 				51BE76DF1BCC95EC00CE5A62 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
