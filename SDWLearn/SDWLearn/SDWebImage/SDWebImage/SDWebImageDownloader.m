@@ -167,6 +167,7 @@ static NSString *const kCompletedCallbackKey = @"completed";
              {
                  [sself removeCallbacksForURL:url];
              }
+            
              for (NSDictionary *callbacks in callbacksForURL)
              {
                  SDWebImageDownloaderCompletedBlock callback = callbacks[kCompletedCallbackKey];
@@ -218,6 +219,7 @@ static NSString *const kCompletedCallbackKey = @"completed";
     }
 
     dispatch_barrier_sync(self.barrierQueue, ^{
+        
         BOOL first = NO;
         if (!self.URLCallbacks[url])
         {
