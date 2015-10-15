@@ -421,7 +421,8 @@ BOOL ImageDataHasPNGPreffix(NSData *data) {
     [self cleanDiskWithCompletionBlock:nil];
 }
 
-- (void)cleanDiskWithCompletionBlock:(SDWebImageNoParamsBlock)completionBlock {
+- (void)cleanDiskWithCompletionBlock:(SDWebImageNoParamsBlock)completionBlock
+{
     dispatch_async(self.ioQueue, ^{
         NSURL *diskCacheURL = [NSURL fileURLWithPath:self.diskCachePath isDirectory:YES];
         NSArray *resourceKeys = @[NSURLIsDirectoryKey, NSURLContentModificationDateKey, NSURLTotalFileAllocatedSizeKey];
@@ -432,6 +433,7 @@ BOOL ImageDataHasPNGPreffix(NSData *data) {
                                                                       options:NSDirectoryEnumerationSkipsHiddenFiles
                                                                  errorHandler:NULL];
 
+        //比当前时间早 maxCacheAge
         NSDate *expirationDate = [NSDate dateWithTimeIntervalSinceNow:-self.maxCacheAge];
         NSMutableDictionary *cacheFiles = [NSMutableDictionary dictionary];
         NSUInteger currentCacheSize = 0;
