@@ -39,11 +39,13 @@ BOOL ImageDataHasPNGPreffix(NSData *data) {
 @end
 
 
-@implementation SDImageCache {
+@implementation SDImageCache
+{
     NSFileManager *_fileManager;
 }
 
-+ (SDImageCache *)sharedImageCache {
++ (SDImageCache *)sharedImageCache
+{
     static dispatch_once_t once;
     static id instance;
     dispatch_once(&once, ^{
@@ -53,12 +55,15 @@ BOOL ImageDataHasPNGPreffix(NSData *data) {
     return instance;
 }
 
-- (id)init {
+- (id)init
+{
     return [self initWithNamespace:@"default"];
 }
 
-- (id)initWithNamespace:(NSString *)ns {
-    if ((self = [super init])) {
+- (id)initWithNamespace:(NSString *)ns
+{
+    if ((self = [super init]))
+    {
         NSString *fullNamespace = [@"com.hackemist.SDWebImageCache." stringByAppendingString:ns];
 
         // Create IO serial queue
@@ -116,20 +121,24 @@ BOOL ImageDataHasPNGPreffix(NSData *data) {
     }
 }
 
-- (NSString *)cachePathForKey:(NSString *)key inPath:(NSString *)path {
+- (NSString *)cachePathForKey:(NSString *)key inPath:(NSString *)path
+{
     NSString *filename = [self cachedFileNameForKey:key];
     return [path stringByAppendingPathComponent:filename];
 }
 
-- (NSString *)defaultCachePathForKey:(NSString *)key {
+- (NSString *)defaultCachePathForKey:(NSString *)key
+{
     return [self cachePathForKey:key inPath:self.diskCachePath];
 }
 
 #pragma mark SDImageCache (private)
 
-- (NSString *)cachedFileNameForKey:(NSString *)key {
+- (NSString *)cachedFileNameForKey:(NSString *)key
+{
     const char *str = [key UTF8String];
-    if (str == NULL) {
+    if (str == NULL)
+    {
         str = "";
     }
     unsigned char r[CC_MD5_DIGEST_LENGTH];
@@ -142,18 +151,22 @@ BOOL ImageDataHasPNGPreffix(NSData *data) {
 
 #pragma mark ImageCache
 
-- (void)storeImage:(UIImage *)image recalculateFromImage:(BOOL)recalculate imageData:(NSData *)imageData forKey:(NSString *)key toDisk:(BOOL)toDisk {
-    if (!image || !key) {
+- (void)storeImage:(UIImage *)image recalculateFromImage:(BOOL)recalculate imageData:(NSData *)imageData forKey:(NSString *)key toDisk:(BOOL)toDisk
+{
+    if (!image || !key)
+    {
         return;
     }
 
     [self.memCache setObject:image forKey:key cost:image.size.height * image.size.width * image.scale];
 
-    if (toDisk) {
+    if (toDisk)
+    {
         dispatch_async(self.ioQueue, ^{
             NSData *data = imageData;
 
-            if (image && (recalculate || !data)) {
+            if (image && (recalculate || !data))
+            {
 #if TARGET_OS_IPHONE
                 // We need to determine if the image is a PNG or a JPEG
                 // PNGs are easier to detect because they have a unique signature (http://www.w3.org/TR/PNG-Structure.html)
@@ -165,14 +178,17 @@ BOOL ImageDataHasPNGPreffix(NSData *data) {
                 BOOL imageIsPng = YES;
 
                 // But if we have an image data, we will look at the preffix
-                if ([imageData length] >= [kPNGSignatureData length]) {
+                if ([imageData length] >= [kPNGSignatureData length])
+                {
                     imageIsPng = ImageDataHasPNGPreffix(imageData);
                 }
 
-                if (imageIsPng) {
+                if (imageIsPng)
+                {
                     data = UIImagePNGRepresentation(image);
                 }
-                else {
+                else
+                {
                     data = UIImageJPEGRepresentation(image, (CGFloat)1.0);
                 }
 #else
@@ -180,8 +196,10 @@ BOOL ImageDataHasPNGPreffix(NSData *data) {
 #endif
             }
 
-            if (data) {
-                if (![_fileManager fileExistsAtPath:_diskCachePath]) {
+            if (data)
+            {
+                if (![_fileManager fileExistsAtPath:_diskCachePath])
+                {
                     [_fileManager createDirectoryAtPath:_diskCachePath withIntermediateDirectories:YES attributes:nil error:NULL];
                 }
 
@@ -191,15 +209,18 @@ BOOL ImageDataHasPNGPreffix(NSData *data) {
     }
 }
 
-- (void)storeImage:(UIImage *)image forKey:(NSString *)key {
+- (void)storeImage:(UIImage *)image forKey:(NSString *)key
+{
     [self storeImage:image recalculateFromImage:YES imageData:nil forKey:key toDisk:YES];
 }
 
-- (void)storeImage:(UIImage *)image forKey:(NSString *)key toDisk:(BOOL)toDisk {
+- (void)storeImage:(UIImage *)image forKey:(NSString *)key toDisk:(BOOL)toDisk
+{
     [self storeImage:image recalculateFromImage:YES imageData:nil forKey:key toDisk:toDisk];
 }
 
-- (BOOL)diskImageExistsWithKey:(NSString *)key {
+- (BOOL)diskImageExistsWithKey:(NSString *)key
+{
     BOOL exists = NO;
     
     // this is an exception to access the filemanager on another queue than ioQueue, but we are using the shared instance
@@ -209,7 +230,8 @@ BOOL ImageDataHasPNGPreffix(NSData *data) {
     return exists;
 }
 
-- (void)diskImageExistsWithKey:(NSString *)key completion:(SDWebImageCheckCacheCompletionBlock)completionBlock {
+- (void)diskImageExistsWithKey:(NSString *)key completion:(SDWebImageCheckCacheCompletionBlock)completionBlock
+{
     dispatch_async(_ioQueue, ^{
         BOOL exists = [_fileManager fileExistsAtPath:[self defaultCachePathForKey:key]];
         if (completionBlock) {
@@ -417,7 +439,8 @@ BOOL ImageDataHasPNGPreffix(NSData *data) {
     });
 }
 
-- (void)cleanDisk {
+- (void)cleanDisk
+{
     [self cleanDiskWithCompletionBlock:nil];
 }
 
@@ -443,17 +466,21 @@ BOOL ImageDataHasPNGPreffix(NSData *data) {
         //  1. Removing files that are older than the expiration date.
         //  2. Storing file attributes for the size-based cleanup pass.
         NSMutableArray *urlsToDelete = [[NSMutableArray alloc] init];
-        for (NSURL *fileURL in fileEnumerator) {
+        for (NSURL *fileURL in fileEnumerator)
+        {
             NSDictionary *resourceValues = [fileURL resourceValuesForKeys:resourceKeys error:NULL];
 
             // Skip directories.
-            if ([resourceValues[NSURLIsDirectoryKey] boolValue]) {
+            if ([resourceValues[NSURLIsDirectoryKey] boolValue])
+            {
                 continue;
             }
 
             // Remove files that are older than the expiration date;
             NSDate *modificationDate = resourceValues[NSURLContentModificationDateKey];
-            if ([[modificationDate laterDate:expirationDate] isEqualToDate:expirationDate]) {
+            if ([[modificationDate laterDate:expirationDate] isEqualToDate:expirationDate])
+            {
+                //modificationDate older than expireationDate
                 [urlsToDelete addObject:fileURL];
                 continue;
             }
@@ -470,30 +497,35 @@ BOOL ImageDataHasPNGPreffix(NSData *data) {
 
         // If our remaining disk cache exceeds a configured maximum size, perform a second
         // size-based cleanup pass.  We delete the oldest files first.
-        if (self.maxCacheSize > 0 && currentCacheSize > self.maxCacheSize) {
+        if (self.maxCacheSize > 0 && currentCacheSize > self.maxCacheSize)
+        {
             // Target half of our maximum cache size for this cleanup pass.
             const NSUInteger desiredCacheSize = self.maxCacheSize / 2;
 
             // Sort the remaining cache files by their last modification time (oldest first).
-            NSArray *sortedFiles = [cacheFiles keysSortedByValueWithOptions:NSSortConcurrent
-                                                            usingComparator:^NSComparisonResult(id obj1, id obj2) {
-                                                                return [obj1[NSURLContentModificationDateKey] compare:obj2[NSURLContentModificationDateKey]];
-                                                            }];
+            NSArray *sortedFiles = [cacheFiles keysSortedByValueWithOptions:NSSortConcurrent usingComparator:^NSComparisonResult(id obj1, id obj2)
+            {
+                return [obj1[NSURLContentModificationDateKey] compare:obj2[NSURLContentModificationDateKey]];
+            }];
 
             // Delete files until we fall below our desired cache size.
-            for (NSURL *fileURL in sortedFiles) {
-                if ([_fileManager removeItemAtURL:fileURL error:nil]) {
+            for (NSURL *fileURL in sortedFiles)
+            {
+                if ([_fileManager removeItemAtURL:fileURL error:nil])
+                {
                     NSDictionary *resourceValues = cacheFiles[fileURL];
                     NSNumber *totalAllocatedSize = resourceValues[NSURLTotalFileAllocatedSizeKey];
                     currentCacheSize -= [totalAllocatedSize unsignedIntegerValue];
 
-                    if (currentCacheSize < desiredCacheSize) {
+                    if (currentCacheSize < desiredCacheSize)
+                    {
                         break;
                     }
                 }
             }
         }
-        if (completionBlock) {
+        if (completionBlock)
+        {
             dispatch_async(dispatch_get_main_queue(), ^{
                 completionBlock();
             });
@@ -501,7 +533,8 @@ BOOL ImageDataHasPNGPreffix(NSData *data) {
     });
 }
 
-- (void)backgroundCleanDisk {
+- (void)backgroundCleanDisk
+{
     UIApplication *application = [UIApplication sharedApplication];
     __block UIBackgroundTaskIdentifier bgTask = [application beginBackgroundTaskWithExpirationHandler:^{
         // Clean up any unfinished task business by marking where you
@@ -517,11 +550,13 @@ BOOL ImageDataHasPNGPreffix(NSData *data) {
     }];
 }
 
-- (NSUInteger)getSize {
+- (NSUInteger)getSize
+{
     __block NSUInteger size = 0;
     dispatch_sync(self.ioQueue, ^{
         NSDirectoryEnumerator *fileEnumerator = [_fileManager enumeratorAtPath:self.diskCachePath];
-        for (NSString *fileName in fileEnumerator) {
+        for (NSString *fileName in fileEnumerator)
+        {
             NSString *filePath = [self.diskCachePath stringByAppendingPathComponent:fileName];
             NSDictionary *attrs = [[NSFileManager defaultManager] attributesOfItemAtPath:filePath error:nil];
             size += [attrs fileSize];
@@ -530,7 +565,8 @@ BOOL ImageDataHasPNGPreffix(NSData *data) {
     return size;
 }
 
-- (NSUInteger)getDiskCount {
+- (NSUInteger)getDiskCount
+{
     __block NSUInteger count = 0;
     dispatch_sync(self.ioQueue, ^{
         NSDirectoryEnumerator *fileEnumerator = [_fileManager enumeratorAtPath:self.diskCachePath];
