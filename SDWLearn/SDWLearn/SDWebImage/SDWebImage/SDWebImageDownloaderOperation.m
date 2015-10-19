@@ -107,7 +107,8 @@
         
         [[NSNotificationCenter defaultCenter] postNotificationName:SDWebImageDownloadStartNotification object:self];
 
-        if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_5_1) {
+        if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_5_1)
+        {
             // Make sure to run the runloop in our background thread so it can process downloaded data
             // Note: we use a timeout to work around an issue with NSURLConnection cancel under iOS 5
             //       not waking up the runloop, leading to dead threads (see https://github.com/rs/SDWebImage/issues/466)
@@ -146,6 +147,8 @@
     @synchronized (self) {
         if (self.thread)
         {
+            
+            //已经启动了一个线程，必须CFRunLoopStop
             [self performSelector:@selector(cancelInternalAndStop) onThread:self.thread withObject:nil waitUntilDone:NO];
         }
         else
@@ -157,7 +160,10 @@
 
 - (void)cancelInternalAndStop
 {
-    if (self.isFinished) return;
+    if (self.isFinished)
+    {
+        return;
+    }
     [self cancelInternal];
     CFRunLoopStop(CFRunLoopGetCurrent());
 }
@@ -165,9 +171,16 @@
 
 - (void)cancelInternal
 {
-    if (self.isFinished) return;
+    if (self.isFinished)
+    {
+        return;
+    }
+    
     [super cancel];
-    if (self.cancelBlock) self.cancelBlock();
+    if (self.cancelBlock)
+    {
+        self.cancelBlock();
+    }
 
     if (self.connection)
     {
