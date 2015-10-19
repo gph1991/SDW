@@ -116,7 +116,8 @@ static NSString *const kCompletedCallbackKey = @"completed";
     __block SDWebImageDownloaderOperation *operation;
     __weak SDWebImageDownloader *wself = self;
 
-    [self addProgressCallback:progressBlock andCompletedBlock:completedBlock forURL:url createCallback:^{
+    [self addProgressCallback:progressBlock andCompletedBlock:completedBlock forURL:url createCallback:^
+    {
         
         //如果第一次下载，会调用
         NSTimeInterval timeoutInterval = wself.downloadTimeout;
@@ -200,6 +201,7 @@ static NSString *const kCompletedCallbackKey = @"completed";
             // Emulate LIFO execution order by systematically adding new operations as last operation's dependency
             [wself.lastAddedOperation addDependency:operation];
             wself.lastAddedOperation = operation;
+            //即前面的任务依赖于后面的任务。后面的任务优先完成?
         }
     }];
 

@@ -11,8 +11,10 @@
 
 @implementation UIImage (GIF)
 
-+ (UIImage *)sd_animatedGIFWithData:(NSData *)data {
-    if (!data) {
++ (UIImage *)sd_animatedGIFWithData:(NSData *)data
+{
+    if (!data)
+    {
         return nil;
     }
 
@@ -22,15 +24,18 @@
 
     UIImage *animatedImage;
 
-    if (count <= 1) {
+    if (count <= 1)
+    {
         animatedImage = [[UIImage alloc] initWithData:data];
     }
-    else {
+    else
+    {
         NSMutableArray *images = [NSMutableArray array];
 
         NSTimeInterval duration = 0.0f;
 
-        for (size_t i = 0; i < count; i++) {
+        for (size_t i = 0; i < count; i++)
+        {
             CGImageRef image = CGImageSourceCreateImageAtIndex(source, i, NULL);
 
             duration += [self sd_frameDurationAtIndex:i source:source];
@@ -40,7 +45,8 @@
             CGImageRelease(image);
         }
 
-        if (!duration) {
+        if (!duration)
+        {
             duration = (1.0f / 10.0f) * count;
         }
 

@@ -18,10 +18,13 @@ static NSData *kPNGSignatureData = nil;
 
 BOOL ImageDataHasPNGPreffix(NSData *data);
 
-BOOL ImageDataHasPNGPreffix(NSData *data) {
+BOOL ImageDataHasPNGPreffix(NSData *data)
+{
     NSUInteger pngSignatureLength = [kPNGSignatureData length];
-    if ([data length] >= pngSignatureLength) {
-        if ([[data subdataWithRange:NSMakeRange(0, pngSignatureLength)] isEqualToData:kPNGSignatureData]) {
+    if ([data length] >= pngSignatureLength)
+    {
+        if ([[data subdataWithRange:NSMakeRange(0, pngSignatureLength)] isEqualToData:kPNGSignatureData])
+        {
             return YES;
         }
     }
@@ -106,17 +109,21 @@ BOOL ImageDataHasPNGPreffix(NSData *data) {
     return self;
 }
 
-- (void)dealloc {
+- (void)dealloc
+{
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     SDDispatchQueueRelease(_ioQueue);
 }
 
-- (void)addReadOnlyCachePath:(NSString *)path {
-    if (!self.customPaths) {
+- (void)addReadOnlyCachePath:(NSString *)path
+{
+    if (!self.customPaths)
+    {
         self.customPaths = [NSMutableArray new];
     }
 
-    if (![self.customPaths containsObject:path]) {
+    if (![self.customPaths containsObject:path])
+    {
         [self.customPaths addObject:path];
     }
 }
@@ -191,6 +198,7 @@ BOOL ImageDataHasPNGPreffix(NSData *data) {
                 {
                     data = UIImageJPEGRepresentation(image, (CGFloat)1.0);
                 }
+                
 #else
                 data = [NSBitmapImageRep representationOfImageRepsInArray:image.representations usingType: NSJPEGFileType properties:nil];
 #endif
@@ -234,7 +242,8 @@ BOOL ImageDataHasPNGPreffix(NSData *data) {
 {
     dispatch_async(_ioQueue, ^{
         BOOL exists = [_fileManager fileExistsAtPath:[self defaultCachePathForKey:key]];
-        if (completionBlock) {
+        if (completionBlock)
+        {
             dispatch_async(dispatch_get_main_queue(), ^{
                 completionBlock(exists);
             });
@@ -367,7 +376,8 @@ BOOL ImageDataHasPNGPreffix(NSData *data) {
     [self removeImageForKey:key fromDisk:YES withCompletion:completion];
 }
 
-- (void)removeImageForKey:(NSString *)key fromDisk:(BOOL)fromDisk {
+- (void)removeImageForKey:(NSString *)key fromDisk:(BOOL)fromDisk
+{
     [self removeImageForKey:key fromDisk:fromDisk withCompletion:nil];
 }
 
@@ -575,7 +585,8 @@ BOOL ImageDataHasPNGPreffix(NSData *data) {
     return count;
 }
 
-- (void)calculateSizeWithCompletionBlock:(SDWebImageCalculateSizeBlock)completionBlock {
+- (void)calculateSizeWithCompletionBlock:(SDWebImageCalculateSizeBlock)completionBlock
+{
     NSURL *diskCacheURL = [NSURL fileURLWithPath:self.diskCachePath isDirectory:YES];
 
     dispatch_async(self.ioQueue, ^{
@@ -587,14 +598,16 @@ BOOL ImageDataHasPNGPreffix(NSData *data) {
                                                                       options:NSDirectoryEnumerationSkipsHiddenFiles
                                                                  errorHandler:NULL];
 
-        for (NSURL *fileURL in fileEnumerator) {
+        for (NSURL *fileURL in fileEnumerator)
+        {
             NSNumber *fileSize;
             [fileURL getResourceValue:&fileSize forKey:NSURLFileSizeKey error:NULL];
             totalSize += [fileSize unsignedIntegerValue];
             fileCount += 1;
         }
 
-        if (completionBlock) {
+        if (completionBlock)
+        {
             dispatch_async(dispatch_get_main_queue(), ^{
                 completionBlock(fileCount, totalSize);
             });

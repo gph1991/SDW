@@ -189,8 +189,14 @@
 
         // As we cancelled the connection, its callback won't be called and thus won't
         // maintain the isFinished and isExecuting flags.
-        if (self.isExecuting) self.executing = NO;
-        if (!self.isFinished) self.finished = YES;
+        if (self.isExecuting)
+        {
+            self.executing = NO;
+        }
+        if (!self.isFinished)
+        {
+            self.finished = YES;
+        }
     }
 
     [self reset];
@@ -238,6 +244,7 @@
 {
     if (![response respondsToSelector:@selector(statusCode)] || [((NSHTTPURLResponse *)response) statusCode] < 400)
     {
+        //200 300
         NSInteger expected = response.expectedContentLength > 0 ? (NSInteger)response.expectedContentLength : 0;
         self.expectedSize = expected;
         if (self.progressBlock)
@@ -300,7 +307,6 @@
                 // in connectionDidFinishLoading.) So save it here and pass it on later.
                 orientation = [[self class] orientationFromPropertyValue:(orientationValue == -1 ? 1 : orientationValue)];
             }
-
         }
 
         if (width + height > 0 && totalSize < self.expectedSize)
@@ -312,6 +318,7 @@
             // Workaround for iOS anamorphic image
             if (partialImageRef)
             {
+                //height is changeing
                 const size_t partialHeight = CGImageGetHeight(partialImageRef);
                 CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
                 CGContextRef bmContext = CGBitmapContextCreate(NULL, width, height, 8, width * 4, colorSpace, kCGBitmapByteOrderDefault | kCGImageAlphaPremultipliedFirst);
@@ -350,9 +357,7 @@
         CFRelease(imageSource);
     }
 
-    
     //只有这里才会被执行
-    
     if (self.progressBlock)
     {
         self.progressBlock(self.imageData.length, self.expectedSize);
