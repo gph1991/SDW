@@ -68,6 +68,8 @@
     
     [self.view.layer addSublayer:layer];
     
+    self.view.layer.contents;
+    
 }
 
 #pragma mark 点击放大

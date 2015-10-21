@@ -137,6 +137,7 @@
 		51BE76B91BCC95EB00CE5A62 /* SDWLearn */ = {
 			isa = PBXGroup;
 			children = (
+				51E3E0831BD7300D008B00C0 /* Discover */,
 				51BE76E01BCC960000CE5A62 /* SDWebImage */,
 				51BE76BE1BCC95EB00CE5A62 /* AppDelegate.h */,
 				516EC3F81BCCF35700014138 /* Module.h */,
@@ -226,6 +227,37 @@
 				51BE77041BCC960000CE5A62 /* UIView+WebCacheOperation.m */,
 			);
 			path = SDWebImage;
+			sourceTree = "<group>";
+		};
+		51E3E0831BD7300D008B00C0 /* Discover */ = {
+			isa = PBXGroup;
+			children = (
+				51E3E0841BD7300D008B00C0 /* Controller */,
+				51E3E0851BD7300D008B00C0 /* Model */,
+				51E3E0861BD7300D008B00C0 /* View */,
+			);
+			path = Discover;
+			sourceTree = "<group>";
+		};
+		51E3E0841BD7300D008B00C0 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		51E3E0851BD7300D008B00C0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		51E3E0861BD7300D008B00C0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

@@ -466,7 +466,7 @@ BOOL ImageDataHasPNGPreffix(NSData *data)
                                                                       options:NSDirectoryEnumerationSkipsHiddenFiles
                                                                  errorHandler:NULL];
 
-        //比当前时间早 maxCacheAge
+        //比当前时间早 maxCacheAge。比这个时间点更早的就该删除
         NSDate *expirationDate = [NSDate dateWithTimeIntervalSinceNow:-self.maxCacheAge];
         NSMutableDictionary *cacheFiles = [NSMutableDictionary dictionary];
         NSUInteger currentCacheSize = 0;
@@ -501,7 +501,8 @@ BOOL ImageDataHasPNGPreffix(NSData *data)
             [cacheFiles setObject:resourceValues forKey:fileURL];
         }
         
-        for (NSURL *fileURL in urlsToDelete) {
+        for (NSURL *fileURL in urlsToDelete)
+        {
             [_fileManager removeItemAtURL:fileURL error:nil];
         }
 
@@ -545,6 +546,7 @@ BOOL ImageDataHasPNGPreffix(NSData *data)
 
 - (void)backgroundCleanDisk
 {
+    //进入后台时清理
     UIApplication *application = [UIApplication sharedApplication];
     __block UIBackgroundTaskIdentifier bgTask = [application beginBackgroundTaskWithExpirationHandler:^{
         // Clean up any unfinished task business by marking where you
@@ -585,10 +587,11 @@ BOOL ImageDataHasPNGPreffix(NSData *data)
     return count;
 }
 
+
 - (void)calculateSizeWithCompletionBlock:(SDWebImageCalculateSizeBlock)completionBlock
 {
     NSURL *diskCacheURL = [NSURL fileURLWithPath:self.diskCachePath isDirectory:YES];
-
+    
     dispatch_async(self.ioQueue, ^{
         NSUInteger fileCount = 0;
         NSUInteger totalSize = 0;
