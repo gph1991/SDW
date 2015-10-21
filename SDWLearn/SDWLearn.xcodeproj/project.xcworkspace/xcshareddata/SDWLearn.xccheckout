@@ -7,14 +7,14 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>837506DF-7CA5-418A-997E-234796207D94</string>
 	<key>IDESourceControlProjectName</key>
-	<string>project</string>
+	<string>SDWLearn</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>512850F04E39645FE7D7B908F508712E2EC7D355</key>
 		<string>https://github.com/gph1991/SDW.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>SDWLearn/SDWLearn.xcodeproj/project.xcworkspace</string>
+	<string>SDWLearn/SDWLearn.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>512850F04E39645FE7D7B908F508712E2EC7D355</key>
@@ -34,7 +34,7 @@
 			<key>IDESourceControlWCCIdentifierKey</key>
 			<string>512850F04E39645FE7D7B908F508712E2EC7D355</string>
 			<key>IDESourceControlWCCName</key>
-			<string>SDW</string>
+			<string>webimage</string>
 		</dict>
 	</array>
 </dict>
