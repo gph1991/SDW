@@ -347,6 +347,8 @@ BOOL ImageDataHasPNGPreffix(NSData *data)
         {
             return;
         }
+        
+        NSLog(@"磁盘");
 
         //磁盘缓存
         @autoreleasepool {
@@ -363,6 +365,8 @@ BOOL ImageDataHasPNGPreffix(NSData *data)
         }
     });
 
+    
+    NSLog(@"return");
     return operation;
 }
 
