@@ -289,7 +289,8 @@
         {
             //有缓存
             dispatch_main_sync_safe(^{
-                if (!weakOperation.isCancelled) {
+                if (!weakOperation.isCancelled)
+                {
                     completedBlock(image, nil, cacheType, YES, url);
                 }
             });
@@ -313,6 +314,8 @@
         }
     }];//big block
 
+    NSLog(@"big fun return");
+    
     return operation;
 }
 
@@ -386,12 +389,14 @@
 
 // deprecated method, uses the non deprecated method
 // adapter for the completion block
-- (id <SDWebImageOperation>)downloadWithURL:(NSURL *)url options:(SDWebImageOptions)options progress:(SDWebImageDownloaderProgressBlock)progressBlock completed:(SDWebImageCompletedWithFinishedBlock)completedBlock {
+- (id <SDWebImageOperation>)downloadWithURL:(NSURL *)url options:(SDWebImageOptions)options progress:(SDWebImageDownloaderProgressBlock)progressBlock completed:(SDWebImageCompletedWithFinishedBlock)completedBlock
+{
     return [self downloadImageWithURL:url
                               options:options
                              progress:progressBlock
                             completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
-                                if (completedBlock) {
+                                if (completedBlock)
+                                {
                                     completedBlock(image, error, cacheType, finished);
                                 }
                             }];
