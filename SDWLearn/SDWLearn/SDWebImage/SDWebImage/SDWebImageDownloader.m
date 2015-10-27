@@ -29,7 +29,8 @@ static NSString *const kCompletedCallbackKey = @"completed";
 
 @implementation SDWebImageDownloader
 
-+ (void)initialize {
++ (void)initialize
+{
     // Bind SDNetworkActivityIndicator if available (download it here: http://github.com/rs/SDNetworkActivityIndicator )
     // To use it, just add #import "SDNetworkActivityIndicator.h" in addition to the SDWebImage import
     if (NSClassFromString(@"SDNetworkActivityIndicator")) {
@@ -52,7 +53,8 @@ static NSString *const kCompletedCallbackKey = @"completed";
     }
 }
 
-+ (SDWebImageDownloader *)sharedDownloader {
++ (SDWebImageDownloader *)sharedDownloader
+{
     static dispatch_once_t once;
     static id instance;
     dispatch_once(&once, ^{
@@ -62,7 +64,8 @@ static NSString *const kCompletedCallbackKey = @"completed";
 }
 
 - (id)init {
-    if ((self = [super init])) {
+    if ((self = [super init]))
+    {
         _executionOrder = SDWebImageDownloaderFIFOExecutionOrder;
         _downloadQueue = [NSOperationQueue new];
         _downloadQueue.maxConcurrentOperationCount = 2;
@@ -74,7 +77,8 @@ static NSString *const kCompletedCallbackKey = @"completed";
     return self;
 }
 
-- (void)dealloc {
+- (void)dealloc
+{
     [self.downloadQueue cancelAllOperations];
     SDDispatchQueueRelease(_barrierQueue);
 }
@@ -201,7 +205,7 @@ static NSString *const kCompletedCallbackKey = @"completed";
             // Emulate LIFO execution order by systematically adding new operations as last operation's dependency
             [wself.lastAddedOperation addDependency:operation];
             wself.lastAddedOperation = operation;
-            //即前面的任务依赖于后面的任务。后面的任务优先完成?
+            //即前面的任务依赖于后面的任务。后面的任务会优先完成?
         }
     }];
 
