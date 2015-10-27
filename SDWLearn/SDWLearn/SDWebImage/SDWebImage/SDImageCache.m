@@ -366,8 +366,11 @@ BOOL ImageDataHasPNGPreffix(NSData *data)
             });
         }
     });
+<<<<<<< HEAD
+=======
 
     
+>>>>>>> 316563ee7aa56956f3323c8256a29e73a1f3aa74
     NSLog(@"return");
     return operation;
 }

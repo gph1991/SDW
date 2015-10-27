@@ -68,8 +68,8 @@
     
     [self.view.layer addSublayer:layer];
     
-    self.view.layer.contents;
-    
+   
+    NSLog(@"This is OK");
 }
 
 #pragma mark 点击放大
