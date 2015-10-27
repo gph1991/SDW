@@ -347,7 +347,7 @@ BOOL ImageDataHasPNGPreffix(NSData *data)
         {
             return;
         }
-
+        NSLog(@"磁盘");
         //磁盘缓存
         @autoreleasepool {
             UIImage *diskImage = [self diskImageForKey:key];
@@ -362,7 +362,7 @@ BOOL ImageDataHasPNGPreffix(NSData *data)
             });
         }
     });
-
+    NSLog(@"return");
     return operation;
 }
 

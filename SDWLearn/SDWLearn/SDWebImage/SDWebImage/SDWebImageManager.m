@@ -289,7 +289,8 @@
         {
             //有缓存
             dispatch_main_sync_safe(^{
-                if (!weakOperation.isCancelled) {
+                if (!weakOperation.isCancelled)
+                {
                     completedBlock(image, nil, cacheType, YES, url);
                 }
             });
