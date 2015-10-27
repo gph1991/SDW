@@ -347,7 +347,13 @@ BOOL ImageDataHasPNGPreffix(NSData *data)
         {
             return;
         }
+<<<<<<< HEAD
         NSLog(@"磁盘");
+=======
+        
+        NSLog(@"磁盘");
+
+>>>>>>> 316563ee7aa56956f3323c8256a29e73a1f3aa74
         //磁盘缓存
         @autoreleasepool {
             UIImage *diskImage = [self diskImageForKey:key];
@@ -358,10 +364,17 @@ BOOL ImageDataHasPNGPreffix(NSData *data)
             }
 
             dispatch_async(dispatch_get_main_queue(), ^{
+                NSLog(@"磁盘doneBlock");
+
                 doneBlock(diskImage, SDImageCacheTypeDisk);
             });
         }
     });
+<<<<<<< HEAD
+=======
+
+    
+>>>>>>> 316563ee7aa56956f3323c8256a29e73a1f3aa74
     NSLog(@"return");
     return operation;
 }
