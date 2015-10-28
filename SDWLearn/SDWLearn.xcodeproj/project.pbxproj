@@ -48,13 +48,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-<<<<<<< HEAD
 		184B3BE71BE062B600E80FA0 /* webimage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = webimage.h; sourceTree = "<group>"; };
 		184B3BE81BE062B600E80FA0 /* webimage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = webimage.m; sourceTree = "<group>"; };
-=======
 		184B3BE41BE0628A00E80FA0 /* Test.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Test.h; sourceTree = "<group>"; };
 		184B3BE51BE0628A00E80FA0 /* Test.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Test.m; sourceTree = "<group>"; };
->>>>>>> f0c1b66832aae3ae9106a45582750d20ea86b667
 		516EC3F81BCCF35700014138 /* Module.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Module.h; sourceTree = "<group>"; };
 		516EC3F91BCCF35700014138 /* Module.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Module.m; sourceTree = "<group>"; };
 		51BE76B71BCC95EB00CE5A62 /* SDWLearn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SDWLearn.app; sourceTree = BUILT_PRODUCTS_DIR; };
