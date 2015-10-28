@@ -10,6 +10,7 @@
 		184B3BE61BE0628A00E80FA0 /* Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 184B3BE51BE0628A00E80FA0 /* Test.m */; settings = {ASSET_TAGS = (); }; };
 		184B3BE91BE062B600E80FA0 /* webimage.m in Sources */ = {isa = PBXBuildFile; fileRef = 184B3BE81BE062B600E80FA0 /* webimage.m */; settings = {ASSET_TAGS = (); }; };
 		1850E7AB1BE065FA003F6D73 /* webimage2.m in Sources */ = {isa = PBXBuildFile; fileRef = 1850E7AA1BE065FA003F6D73 /* webimage2.m */; settings = {ASSET_TAGS = (); }; };
+		1850E7A81BE06586003F6D73 /* Test2.m in Sources */ = {isa = PBXBuildFile; fileRef = 1850E7A71BE06586003F6D73 /* Test2.m */; settings = {ASSET_TAGS = (); }; };
 		516EC3FA1BCCF35700014138 /* Module.m in Sources */ = {isa = PBXBuildFile; fileRef = 516EC3F91BCCF35700014138 /* Module.m */; settings = {ASSET_TAGS = (); }; };
 		51BE76BD1BCC95EB00CE5A62 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 51BE76BC1BCC95EB00CE5A62 /* main.m */; };
 		51BE76C01BCC95EB00CE5A62 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 51BE76BF1BCC95EB00CE5A62 /* AppDelegate.m */; };
@@ -55,6 +56,8 @@
 		184B3BE81BE062B600E80FA0 /* webimage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = webimage.m; sourceTree = "<group>"; };
 		1850E7A91BE065FA003F6D73 /* webimage2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = webimage2.h; sourceTree = "<group>"; };
 		1850E7AA1BE065FA003F6D73 /* webimage2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = webimage2.m; sourceTree = "<group>"; };
+		1850E7A61BE06586003F6D73 /* Test2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Test2.h; sourceTree = "<group>"; };
+		1850E7A71BE06586003F6D73 /* Test2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Test2.m; sourceTree = "<group>"; };
 		516EC3F81BCCF35700014138 /* Module.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Module.h; sourceTree = "<group>"; };
 		516EC3F91BCCF35700014138 /* Module.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Module.m; sourceTree = "<group>"; };
 		51BE76B71BCC95EB00CE5A62 /* SDWLearn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SDWLearn.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -156,6 +159,8 @@
 				1850E7AA1BE065FA003F6D73 /* webimage2.m */,
 				184B3BE41BE0628A00E80FA0 /* Test.h */,
 				184B3BE51BE0628A00E80FA0 /* Test.m */,
+				1850E7A61BE06586003F6D73 /* Test2.h */,
+				1850E7A71BE06586003F6D73 /* Test2.m */,
 				51BE76BF1BCC95EB00CE5A62 /* AppDelegate.m */,
 				51BE76C11BCC95EB00CE5A62 /* ViewController.h */,
 				51BE76C21BCC95EB00CE5A62 /* ViewController.m */,
@@ -362,6 +367,7 @@
 				51BE76C01BCC95EB00CE5A62 /* AppDelegate.m in Sources */,
 				51BE77061BCC960000CE5A62 /* README.md in Sources */,
 				184B3BE91BE062B600E80FA0 /* webimage.m in Sources */,
+				1850E7A81BE06586003F6D73 /* Test2.m in Sources */,
 				51BE77131BCC960000CE5A62 /* UIImage+WebP.m in Sources */,
 				51BE77151BCC960000CE5A62 /* UIImageView+WebCache.m in Sources */,
 				51BE770C1BCC960000CE5A62 /* SDWebImageDownloader.m in Sources */,
