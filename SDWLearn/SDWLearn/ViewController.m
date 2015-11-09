@@ -13,7 +13,7 @@
 #define WIDTH 50
 
 
-@interface ViewController ()
+@interface ViewController ()<UIAlertViewDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *image1;
 @property (weak, nonatomic) IBOutlet UIView *upView;
 
@@ -22,12 +22,21 @@
 @implementation ViewController
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
-
+    [super viewDidLoad];    
     [self.image1 sd_setImageWithURL:[NSURL URLWithString:@"http://img2.selfimg.com.cn/Lself554/2015/10/12/1444646779_w8TQcc.jpg"]];
 //    [self.image1 sd_setImageWithURL:[NSURL URLWithString:@"http://img2.selfimg.com.cn/Lself554/2015/10/12/1444646779_w8TQcc.jpg"]];
     CAShapeLayer *layer  =[CAShapeLayer layer];
     layer.path = [UIBezierPath bezierPathWithRoundedRect:self.view.bounds byRoundingCorners:UIRectCornerAllCorners cornerRadii:CGSizeMake(10, 10)].CGPath;
+    
+    
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1)
+    {
+        [[UIApplication sharedApplication]openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
+    }
 }
 - (IBAction)btnDonw:(id)sender {
     ((__bridge CFRunLoopRef)[NSRunLoop mainRunLoop], (__bridge CFStringRef)UIApplicationDidEnterBackgroundNotification);
@@ -37,6 +46,9 @@
 {
     [super viewDidAppear:animated];
     [self drawMyLayer];
+    UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"警告" message:@"没有相机访问权限，请在设置-隐私-相机中进行设置！" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"设置",nil];
+    [alertView show];
+    return;
 }
 
 - (void)didReceiveMemoryWarning {
