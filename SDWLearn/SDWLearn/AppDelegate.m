@@ -6,6 +6,8 @@
 //  Copyright (c) 2015年 gph. All rights reserved.
 //
 
+#import "ViewController.h"
+#import "YYViewHierarchy3D.h"
 #import "AppDelegate.h"
 
 @interface AppDelegate ()
@@ -15,8 +17,23 @@
 @implementation AppDelegate
 
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
     // Override point for customization after application launch.
+    
+    self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
+    self.window.backgroundColor = [UIColor clearColor];
+    [self.window makeKeyAndVisible];
+   
+    UIStoryboard *story = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    
+    ViewController *rootVC = [story instantiateViewControllerWithIdentifier:@"view"];
+//    UINavigationController *navVC = [[UINavigationController alloc]initWithRootViewController:rootVC];
+    self.window.rootViewController = rootVC;
+    
+    [YYViewHierarchy3D show];
+
+    
     return YES;
 }
 

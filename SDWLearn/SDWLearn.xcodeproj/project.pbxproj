@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		18B9BBF21BFF1EBD006AA210 /* RunLoopSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B9BBF11BFF1EBD006AA210 /* RunLoopSource.m */; settings = {ASSET_TAGS = (); }; };
+		18DED6981C02AA6B00659B58 /* YYViewHierarchy3D.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DED6971C02AA6B00659B58 /* YYViewHierarchy3D.m */; settings = {ASSET_TAGS = (); }; };
 		51BE76BD1BCC95EB00CE5A62 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 51BE76BC1BCC95EB00CE5A62 /* main.m */; };
 		51BE76C01BCC95EB00CE5A62 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 51BE76BF1BCC95EB00CE5A62 /* AppDelegate.m */; };
 		51BE76C31BCC95EB00CE5A62 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 51BE76C21BCC95EB00CE5A62 /* ViewController.m */; };
@@ -45,6 +47,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		18B9BBF01BFF1EBD006AA210 /* RunLoopSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RunLoopSource.h; sourceTree = "<group>"; };
+		18B9BBF11BFF1EBD006AA210 /* RunLoopSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RunLoopSource.m; sourceTree = "<group>"; };
+		18DED6961C02AA6B00659B58 /* YYViewHierarchy3D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYViewHierarchy3D.h; sourceTree = "<group>"; };
+		18DED6971C02AA6B00659B58 /* YYViewHierarchy3D.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYViewHierarchy3D.m; sourceTree = "<group>"; };
 		51BE76B71BCC95EB00CE5A62 /* SDWLearn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SDWLearn.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		51BE76BB1BCC95EB00CE5A62 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		51BE76BC1BCC95EB00CE5A62 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -137,8 +143,12 @@
 				51BE76E01BCC960000CE5A62 /* SDWebImage */,
 				51BE76BE1BCC95EB00CE5A62 /* AppDelegate.h */,
 				51BE76BF1BCC95EB00CE5A62 /* AppDelegate.m */,
+				18DED6961C02AA6B00659B58 /* YYViewHierarchy3D.h */,
+				18DED6971C02AA6B00659B58 /* YYViewHierarchy3D.m */,
 				51BE76C11BCC95EB00CE5A62 /* ViewController.h */,
 				51BE76C21BCC95EB00CE5A62 /* ViewController.m */,
+				18B9BBF01BFF1EBD006AA210 /* RunLoopSource.h */,
+				18B9BBF11BFF1EBD006AA210 /* RunLoopSource.m */,
 				51BE76C41BCC95EB00CE5A62 /* Main.storyboard */,
 				51BE76C71BCC95EB00CE5A62 /* Images.xcassets */,
 				51BE76C91BCC95EB00CE5A62 /* LaunchScreen.xib */,
@@ -342,9 +352,11 @@
 				51BE77151BCC960000CE5A62 /* UIImageView+WebCache.m in Sources */,
 				51BE770C1BCC960000CE5A62 /* SDWebImageDownloader.m in Sources */,
 				51BE77161BCC960000CE5A62 /* UIView+WebCacheOperation.m in Sources */,
+				18DED6981C02AA6B00659B58 /* YYViewHierarchy3D.m in Sources */,
 				51BE77101BCC960000CE5A62 /* UIButton+WebCache.m in Sources */,
 				51BE77071BCC960000CE5A62 /* MKAnnotationView+WebCache.m in Sources */,
 				51BE77081BCC960000CE5A62 /* NSData+ImageContentType.m in Sources */,
+				18B9BBF21BFF1EBD006AA210 /* RunLoopSource.m in Sources */,
 				51BE76BD1BCC95EB00CE5A62 /* main.m in Sources */,
 				51BE770E1BCC960000CE5A62 /* SDWebImageManager.m in Sources */,
 				51BE770B1BCC960000CE5A62 /* SDWebImageDecoder.m in Sources */,

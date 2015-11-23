@@ -6,6 +6,7 @@
 //  Copyright (c) 2015年 gph. All rights reserved.
 //
 
+#import "YYViewHierarchy3D.h"
 #import <objc/runtime.h>
 #import "UIImageView+WebCache.h"
 #import "ViewController.h"
@@ -14,6 +15,9 @@
 
 
 @interface ViewController ()<UIAlertViewDelegate>
+{
+    BOOL pageStillLoading;
+}
 @property (weak, nonatomic) IBOutlet UIImageView *image1;
 @property (weak, nonatomic) IBOutlet UIView *upView;
 
@@ -22,13 +26,15 @@
 @implementation ViewController
 
 - (void)viewDidLoad {
-    [super viewDidLoad];    
+    [super viewDidLoad];
+    self.view.backgroundColor = [UIColor whiteColor];
+    
     [self.image1 sd_setImageWithURL:[NSURL URLWithString:@"http://img2.selfimg.com.cn/Lself554/2015/10/12/1444646779_w8TQcc.jpg"]];
 //    [self.image1 sd_setImageWithURL:[NSURL URLWithString:@"http://img2.selfimg.com.cn/Lself554/2015/10/12/1444646779_w8TQcc.jpg"]];
-    CAShapeLayer *layer  =[CAShapeLayer layer];
-    layer.path = [UIBezierPath bezierPathWithRoundedRect:self.view.bounds byRoundingCorners:UIRectCornerAllCorners cornerRadii:CGSizeMake(10, 10)].CGPath;
+//    CAShapeLayer *layer  =[CAShapeLayer layer];
+//    layer.path = [UIBezierPath bezierPathWithRoundedRect:self.view.bounds byRoundingCorners:UIRectCornerAllCorners cornerRadii:CGSizeMake(10, 10)].CGPath;
     
-    
+//    [YYViewHierarchy3D show];
 }
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
@@ -38,16 +44,36 @@
         [[UIApplication sharedApplication]openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
     }
 }
-- (IBAction)btnDonw:(id)sender {
-    ((__bridge CFRunLoopRef)[NSRunLoop mainRunLoop], (__bridge CFStringRef)UIApplicationDidEnterBackgroundNotification);
+
+- (IBAction)btnDonw:(id)sender
+{
+    NSArray *arr = [UIApplication sharedApplication].windows;
+    
+    pageStillLoading = YES;
+    [NSThread detachNewThreadSelector:@selector(handlerRequest)toTarget:self withObject:nil];
+    [self.image1 setHidden:YES];
+    while (pageStillLoading)
+    {
+        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
+    }
+    
+    [self.image1 setHidden:NO];
+}
+
+-(void)handlerRequest
+{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        pageStillLoading = NO;
+        NSLog(@"%@",@(pageStillLoading));
+    });
 }
 
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [self drawMyLayer];
-    UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"警告" message:@"没有相机访问权限，请在设置-隐私-相机中进行设置！" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"设置",nil];
-    [alertView show];
+//    [self drawMyLayer];
+//    UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"警告" message:@"没有相机访问权限，请在设置-隐私-相机中进行设置！" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"设置",nil];
+//    [alertView show];
     return;
 }
 
@@ -88,24 +114,24 @@
     NSLog(@"This is OK");
 }
 
-#pragma mark 点击放大
--(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    UITouch *touch=[touches anyObject];
-    CALayer *layer=self.view.layer.sublayers[0];
-    CGFloat width=layer.bounds.size.width;
-    if (width==WIDTH)
-    {
-        width=WIDTH*4;
-    }
-    else
-    {
-        width=WIDTH;
-    }
-    
-    layer.bounds=CGRectMake(0, 0, width, width);
-    layer.position=[touch locationInView:self.view];
-    layer.cornerRadius=width/2;
-}
+//#pragma mark 点击放大
+//-(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+//{
+//    UITouch *touch=[touches anyObject];
+//    CALayer *layer=self.view.layer.sublayers[0];
+//    CGFloat width=layer.bounds.size.width;
+//    if (width==WIDTH)
+//    {
+//        width=WIDTH*4;
+//    }
+//    else
+//    {
+//        width=WIDTH;
+//    }
+//    
+//    layer.bounds=CGRectMake(0, 0, width, width);
+//    layer.position=[touch locationInView:self.view];
+//    layer.cornerRadius=width/2;
+//}
 
 @end
