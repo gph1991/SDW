@@ -229,7 +229,8 @@
     
     isAnimatimg = YES;
     [UIView animateWithDuration:time animations:^() {
-        for (ViewImageHolder * holder in self.holders) {
+        for (ViewImageHolder * holder in self.holders)
+        {
             holder.view.layer.transform = trans;
         }
     } completion:^(BOOL finished) {
@@ -312,7 +313,6 @@
         if (!v.hidden)
         {
             [notHiddens addObject:v];
-            v.holderFrame;
             v.hidden = YES;
         }
     }
@@ -357,7 +357,6 @@
     rotateY = 0;
     
     self.holders = [NSMutableArray arrayWithCapacity:100];
-    NSArray *arr = [UIApplication sharedApplication].windows;
     for (int i = 0; i < [UIApplication sharedApplication].windows.count; i++)
     {
         if ([UIApplication sharedApplication].windows[i] == [YYViewHierarchy3DButton sharedInstance])
@@ -398,7 +397,7 @@
             holder.view.layer.transform = CATransform3DIdentity;
         }
     } completion:^(BOOL finished) {
-        [UIView animateWithDuration:.3 animations:^() {
+        [UIView animateWithDuration:.2 animations:^() {
                 self.hidden = YES;
             } completion:^(BOOL finished) {
                 for (ViewImageHolder * holder in self.holders)

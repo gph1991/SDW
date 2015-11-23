@@ -31,7 +31,6 @@
 //    UINavigationController *navVC = [[UINavigationController alloc]initWithRootViewController:rootVC];
     self.window.rootViewController = rootVC;
     
-    [YYViewHierarchy3D show];
 
     
     return YES;
