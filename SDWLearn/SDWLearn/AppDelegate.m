@@ -31,8 +31,6 @@
 //    UINavigationController *navVC = [[UINavigationController alloc]initWithRootViewController:rootVC];
     self.window.rootViewController = rootVC;
     
-
-    
     return YES;
 }
 

@@ -18,6 +18,7 @@
 {
     BOOL pageStillLoading;
 }
+
 @property (weak, nonatomic) IBOutlet UIImageView *image1;
 @property (weak, nonatomic) IBOutlet UIView *upView;
 
@@ -33,8 +34,6 @@
 //    [self.image1 sd_setImageWithURL:[NSURL URLWithString:@"http://img2.selfimg.com.cn/Lself554/2015/10/12/1444646779_w8TQcc.jpg"]];
 //    CAShapeLayer *layer  =[CAShapeLayer layer];
 //    layer.path = [UIBezierPath bezierPathWithRoundedRect:self.view.bounds byRoundingCorners:UIRectCornerAllCorners cornerRadii:CGSizeMake(10, 10)].CGPath;
-    
-//    [YYViewHierarchy3D show];
 }
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
@@ -47,17 +46,27 @@
 
 - (IBAction)btnDonw:(id)sender
 {
-    NSArray *arr = [UIApplication sharedApplication].windows;
+    self.image1.layer.transform =  CATransform3DRotate(self.image1.layer.transform,M_PI_4/2 , 1, 0, 0);
     
-    pageStillLoading = YES;
-    [NSThread detachNewThreadSelector:@selector(handlerRequest)toTarget:self withObject:nil];
-    [self.image1 setHidden:YES];
-    while (pageStillLoading)
-    {
-        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
-    }
-    
-    [self.image1 setHidden:NO];
+//    pageStillLoading = YES;
+//    [NSThread detachNewThreadSelector:@selector(handlerRequest)toTarget:self withObject:nil];
+//    [self.image1 setHidden:YES];
+//    while (pageStillLoading)
+//    {
+//        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
+//    }
+//    
+//    [self.image1 setHidden:NO];
+}
+
+- (IBAction)yRotate:(id)sender
+{
+    self.image1.layer.transform =  CATransform3DRotate(self.image1.layer.transform,M_PI_4/2 , 0, 1, 0);
+}
+
+- (IBAction)zRotate:(id)sender
+{
+    self.image1.layer.transform =  CATransform3DRotate(self.image1.layer.transform,M_PI_4 , 0, 0, 1);
 }
 
 -(void)handlerRequest
