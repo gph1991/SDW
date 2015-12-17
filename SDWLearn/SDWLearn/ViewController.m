@@ -6,6 +6,8 @@
 //  Copyright (c) 2015年 gph. All rights reserved.
 //
 
+
+#import "CustomLayer.h"
 #import "YYViewHierarchy3D.h"
 #import <objc/runtime.h>
 #import "UIImageView+WebCache.h"
@@ -17,6 +19,7 @@
 @interface ViewController ()<UIAlertViewDelegate>
 {
     BOOL pageStillLoading;
+    CustomLayer *testLayer;
 }
 
 @property (weak, nonatomic) IBOutlet UIImageView *image1;
@@ -80,12 +83,12 @@
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [YYViewHierarchy3D show];
+//    [self test];
+//    [YYViewHierarchy3D show];
 
-//    [self drawMyLayer];
+    [self drawMyLayer];
 //    UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"警告" message:@"没有相机访问权限，请在设置-隐私-相机中进行设置！" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"设置",nil];
 //    [alertView show];
-    return;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -93,34 +96,60 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void)test
+{
+    testLayer = [CustomLayer layer];
+    testLayer.progress = 1;
+    testLayer.contentsScale = [UIScreen mainScreen].scale;
+    testLayer.bounds = self.view.bounds;
+    [self.view.layer addSublayer:testLayer];
+ 
+    CABasicAnimation *basic = [CABasicAnimation animationWithKeyPath:@"progress"];
+    basic.duration = 5;
+    basic.fromValue = @0.0;
+    basic.toValue = @1.0;
+    basic.autoreverses = NO;
+    [testLayer addAnimation:basic forKey:@"1234"];
+}
+
 #pragma mark 绘制图层
--(void)drawMyLayer{
+-(void)drawMyLayer
+{
+    TestRec *recView = [[TestRec alloc]initWithFrame:CGRectMake(150, 150, 100, 100)];
+    [self.view addSubview:recView];
     
-    CGSize size=[UIScreen mainScreen].bounds.size;
-    
-    //获得根图层
-    CALayer *layer=[[CALayer alloc]init];
-    //设置背景颜色,由于QuartzCore是跨平台框架，无法直接使用UIColor
-    layer.backgroundColor = [UIColor colorWithRed:0 green:146/255.0 blue:1.0 alpha:1.0].CGColor;
-    //设置中心点
-    layer.position = CGPointMake(size.width/2, size.height/2);
-    //设置大小
-    layer.bounds = CGRectMake(0, 0, WIDTH,WIDTH);
-    //设置圆角,当圆角半径等于矩形的一半时看起来就是一个圆形
-    layer.cornerRadius = WIDTH/2;
-    //设置阴影
-    layer.shadowColor = [UIColor grayColor].CGColor;
-    layer.shadowOffset = CGSizeMake(2, 2);
-    layer.shadowOpacity = .9;
-    //设置边框
-    //    layer.borderColor=[UIColor whiteColor].CGColor;
-    //    layer.borderWidth=1;
-    
-    //设置锚点
-    //    layer.anchorPoint=CGPointZero;
-    
+    UIBezierPath *trackPath =  [UIBezierPath bezierPathWithArcCenter:CGPointMake(200, 350) radius:30 startAngle:0 endAngle:M_PI_2*3 clockwise:1];
+    CAShapeLayer *layer = [CAShapeLayer layer];
+    layer.strokeColor = [UIColor cyanColor].CGColor;
+    layer.path = trackPath.CGPath;
+   
     [self.view.layer addSublayer:layer];
-    
+//
+//    CGSize size=[UIScreen mainScreen].bounds.size;
+//    
+//    //获得根图层
+//    CALayer *layer=[[CALayer alloc]init];
+//    //设置背景颜色,由于QuartzCore是跨平台框架，无法直接使用UIColor
+//    layer.backgroundColor = [UIColor colorWithRed:0 green:146/255.0 blue:1.0 alpha:1.0].CGColor;
+//    //设置中心点
+//    layer.position = CGPointMake(size.width/2, size.height/2);
+//    //设置大小
+//    layer.bounds = CGRectMake(0, 0, WIDTH,WIDTH);
+//    //设置圆角,当圆角半径等于矩形的一半时看起来就是一个圆形
+//    layer.cornerRadius = WIDTH/2;
+//    //设置阴影
+//    layer.shadowColor = [UIColor grayColor].CGColor;
+//    layer.shadowOffset = CGSizeMake(2, 2);
+//    layer.shadowOpacity = .9;
+//    //设置边框
+//    //    layer.borderColor=[UIColor whiteColor].CGColor;
+//    //    layer.borderWidth=1;
+//    
+//    //设置锚点
+//    //    layer.anchorPoint=CGPointZero;
+//    
+//    [self.view.layer addSublayer:layer];
+//    
    
     NSLog(@"This is OK");
 }

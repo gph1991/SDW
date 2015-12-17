@@ -44,6 +44,8 @@
  NSURLResponse class to aid in this work.
  */
 
+#import "TestRec.h"
+
 @interface ViewController : UIViewController
 
 

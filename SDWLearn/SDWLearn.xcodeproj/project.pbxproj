@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		183832F11C1A747C0049F470 /* TestRec.m in Sources */ = {isa = PBXBuildFile; fileRef = 183832F01C1A747C0049F470 /* TestRec.m */; settings = {ASSET_TAGS = (); }; };
+		183832F41C1A9F650049F470 /* CustomLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 183832F31C1A9F650049F470 /* CustomLayer.m */; settings = {ASSET_TAGS = (); }; };
 		187D3C851C03FED100586107 /* CustomNav.m in Sources */ = {isa = PBXBuildFile; fileRef = 187D3C841C03FED100586107 /* CustomNav.m */; };
 		187D3C8B1C03FF3600586107 /* PopAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 187D3C8A1C03FF3600586107 /* PopAnimation.m */; };
 		187D3C911C03FFAD00586107 /* NavigationInteractiveTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 187D3C901C03FFAD00586107 /* NavigationInteractiveTransition.m */; };
@@ -50,6 +52,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		183832EF1C1A747C0049F470 /* TestRec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestRec.h; sourceTree = "<group>"; };
+		183832F01C1A747C0049F470 /* TestRec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestRec.m; sourceTree = "<group>"; };
+		183832F21C1A9F650049F470 /* CustomLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomLayer.h; sourceTree = "<group>"; };
+		183832F31C1A9F650049F470 /* CustomLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomLayer.m; sourceTree = "<group>"; };
 		187D3C831C03FED100586107 /* CustomNav.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomNav.h; sourceTree = "<group>"; };
 		187D3C841C03FED100586107 /* CustomNav.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomNav.m; sourceTree = "<group>"; };
 		187D3C891C03FF3600586107 /* PopAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopAnimation.h; sourceTree = "<group>"; };
@@ -162,6 +168,10 @@
 				18DED6971C02AA6B00659B58 /* YYViewHierarchy3D.m */,
 				51BE76C11BCC95EB00CE5A62 /* ViewController.h */,
 				51BE76C21BCC95EB00CE5A62 /* ViewController.m */,
+				183832EF1C1A747C0049F470 /* TestRec.h */,
+				183832F01C1A747C0049F470 /* TestRec.m */,
+				183832F21C1A9F650049F470 /* CustomLayer.h */,
+				183832F31C1A9F650049F470 /* CustomLayer.m */,
 				18B9BBF01BFF1EBD006AA210 /* RunLoopSource.h */,
 				18B9BBF11BFF1EBD006AA210 /* RunLoopSource.m */,
 				51BE76C41BCC95EB00CE5A62 /* Main.storyboard */,
@@ -360,6 +370,7 @@
 				187D3C911C03FFAD00586107 /* NavigationInteractiveTransition.m in Sources */,
 				51BE76C31BCC95EB00CE5A62 /* ViewController.m in Sources */,
 				51BE770A1BCC960000CE5A62 /* SDWebImageCompat.m in Sources */,
+				183832F11C1A747C0049F470 /* TestRec.m in Sources */,
 				51BE77111BCC960000CE5A62 /* UIImage+GIF.m in Sources */,
 				187D3C851C03FED100586107 /* CustomNav.m in Sources */,
 				51BE770F1BCC960000CE5A62 /* SDWebImagePrefetcher.m in Sources */,
@@ -376,6 +387,7 @@
 				51BE77081BCC960000CE5A62 /* NSData+ImageContentType.m in Sources */,
 				18B9BBF21BFF1EBD006AA210 /* RunLoopSource.m in Sources */,
 				51BE76BD1BCC95EB00CE5A62 /* main.m in Sources */,
+				183832F41C1A9F650049F470 /* CustomLayer.m in Sources */,
 				51BE770E1BCC960000CE5A62 /* SDWebImageManager.m in Sources */,
 				51BE770B1BCC960000CE5A62 /* SDWebImageDecoder.m in Sources */,
 				51BE77091BCC960000CE5A62 /* SDImageCache.m in Sources */,
