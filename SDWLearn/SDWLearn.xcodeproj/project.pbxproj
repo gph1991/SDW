@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		181EA6B31C28026600150C97 /* YFF_BaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 181EA6B21C28026600150C97 /* YFF_BaseModel.m */; settings = {ASSET_TAGS = (); }; };
 		183832F11C1A747C0049F470 /* TestRec.m in Sources */ = {isa = PBXBuildFile; fileRef = 183832F01C1A747C0049F470 /* TestRec.m */; settings = {ASSET_TAGS = (); }; };
 		183832F41C1A9F650049F470 /* CustomLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 183832F31C1A9F650049F470 /* CustomLayer.m */; settings = {ASSET_TAGS = (); }; };
 		187D3C851C03FED100586107 /* CustomNav.m in Sources */ = {isa = PBXBuildFile; fileRef = 187D3C841C03FED100586107 /* CustomNav.m */; };
@@ -52,6 +53,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		181EA6B11C28026600150C97 /* YFF_BaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YFF_BaseModel.h; sourceTree = "<group>"; };
+		181EA6B21C28026600150C97 /* YFF_BaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YFF_BaseModel.m; sourceTree = "<group>"; };
 		183832EF1C1A747C0049F470 /* TestRec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestRec.h; sourceTree = "<group>"; };
 		183832F01C1A747C0049F470 /* TestRec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestRec.m; sourceTree = "<group>"; };
 		183832F21C1A9F650049F470 /* CustomLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomLayer.h; sourceTree = "<group>"; };
@@ -168,6 +171,8 @@
 				18DED6971C02AA6B00659B58 /* YYViewHierarchy3D.m */,
 				51BE76C11BCC95EB00CE5A62 /* ViewController.h */,
 				51BE76C21BCC95EB00CE5A62 /* ViewController.m */,
+				181EA6B11C28026600150C97 /* YFF_BaseModel.h */,
+				181EA6B21C28026600150C97 /* YFF_BaseModel.m */,
 				183832EF1C1A747C0049F470 /* TestRec.h */,
 				183832F01C1A747C0049F470 /* TestRec.m */,
 				183832F21C1A9F650049F470 /* CustomLayer.h */,
@@ -370,6 +375,7 @@
 				187D3C911C03FFAD00586107 /* NavigationInteractiveTransition.m in Sources */,
 				51BE76C31BCC95EB00CE5A62 /* ViewController.m in Sources */,
 				51BE770A1BCC960000CE5A62 /* SDWebImageCompat.m in Sources */,
+				181EA6B31C28026600150C97 /* YFF_BaseModel.m in Sources */,
 				183832F11C1A747C0049F470 /* TestRec.m in Sources */,
 				51BE77111BCC960000CE5A62 /* UIImage+GIF.m in Sources */,
 				187D3C851C03FED100586107 /* CustomNav.m in Sources */,

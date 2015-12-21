@@ -6,7 +6,7 @@
 //  Copyright (c) 2015年 gph. All rights reserved.
 //
 
-
+#import "YFF_BaseModel.h"
 #import "CustomLayer.h"
 #import "YYViewHierarchy3D.h"
 #import <objc/runtime.h>
@@ -37,6 +37,7 @@
 //    [self.image1 sd_setImageWithURL:[NSURL URLWithString:@"http://img2.selfimg.com.cn/Lself554/2015/10/12/1444646779_w8TQcc.jpg"]];
 //    CAShapeLayer *layer  =[CAShapeLayer layer];
 //    layer.path = [UIBezierPath bezierPathWithRoundedRect:self.view.bounds byRoundingCorners:UIRectCornerAllCorners cornerRadii:CGSizeMake(10, 10)].CGPath;
+    YFF_BaseModel *model = [[YFF_BaseModel alloc]initWithDataDic:@{@"name":@"tt"}];
 }
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
