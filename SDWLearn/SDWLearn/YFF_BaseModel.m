@@ -88,6 +88,7 @@
 {
     unsigned int outCount, i;
     objc_property_t *properties = class_copyPropertyList([self class], &outCount);
+    
     for (i = 0; i < outCount; i++)
     {
         objc_property_t property = properties[i];
@@ -118,6 +119,7 @@
         {
 			return self;
 		}
+        
 		NSEnumerator *keyEnum = [attrMapDic keyEnumerator];
 		id attributeName;
 		while ((attributeName = [keyEnum nextObject]))
@@ -135,16 +137,20 @@
 	return self;
 }
 
-- (void)encodeWithCoder:(NSCoder *)encoder{
+- (void)encodeWithCoder:(NSCoder *)encoder
+{
 	NSDictionary *attrMapDic = [self attributeMapDictionary];
-	if (attrMapDic == nil) {
+	if (attrMapDic == nil)
+    {
 		return;
 	}
 	NSEnumerator *keyEnum = [attrMapDic keyEnumerator];
 	id attributeName;
-	while ((attributeName = [keyEnum nextObject])) {
+	while ((attributeName = [keyEnum nextObject]))
+    {
 		SEL getSel = NSSelectorFromString(attributeName);
-		if ([self respondsToSelector:getSel]) {
+		if ([self respondsToSelector:getSel])
+        {
 			NSMethodSignature *signature = nil;
 			signature = [self methodSignatureForSelector:getSel];
 			NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:signature];
@@ -154,21 +160,26 @@
 			[invocation invoke];
 			[invocation getReturnValue:&valueObj];
 			
-			if (valueObj) {
+			if (valueObj)
+            {
 				[encoder encodeObject:valueObj forKey:attributeName];
 			}
 		}
 	}
 }
 
-- (NSData*)getArchivedData{
+- (NSData*)getArchivedData
+{
 	return [NSKeyedArchiver archivedDataWithRootObject:self];
 }
 
-- (NSString *)cleanString:(NSString *)str {
-    if (str == nil) {
+- (NSString *)cleanString:(NSString *)str
+{
+    if (str == nil)
+    {
         return @"";
     }
+    
     NSMutableString *cleanString = [NSMutableString stringWithString:str];
     [cleanString replaceOccurrencesOfString:@"\n" withString:@""
                                     options:NSCaseInsensitiveSearch
@@ -180,7 +191,8 @@
 }
 
 #ifdef _FOR_DEBUG_
--(BOOL) respondsToSelector:(SEL)aSelector {
+-(BOOL) respondsToSelector:(SEL)aSelector
+{
     return [super respondsToSelector:aSelector];
 }
 #endif

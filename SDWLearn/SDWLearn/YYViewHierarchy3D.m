@@ -60,7 +60,7 @@
     
     if (self)
     {
-        self.backgroundColor = [UIColor clearColor];
+        self.backgroundColor = [UIColor blueColor];
         self.windowLevel = UIWindowLevelStatusBar + 100.0f;
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         btn.showsTouchWhenHighlighted = YES;
@@ -76,6 +76,7 @@
         [btn addTarget:[YYViewHierarchy3D sharedInstance] action:@selector(toggleShow) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:btn];
     }
+    
     return self;
 }
 
@@ -88,6 +89,11 @@
     }
     
     CGPoint change = [gestureRecognizer translationInView:self];
+    CGPoint change2 = [gestureRecognizer locationInView:self];
+    
+    NSLog(@"trans %.2f,%.2f",change.x,change.y);
+    NSLog(@"location %.2f,%.2f",change2.x,change2.y);
+
     CGRect newFrame = oldFrame;
     newFrame.origin.x += change.x;
     newFrame.origin.y += change.y;
@@ -136,6 +142,7 @@
 @end
 
 @implementation ViewImageHolder
+
 @synthesize image = _image;
 @synthesize deep = _deep;
 @synthesize rect = _rect;
@@ -143,11 +150,10 @@
 
 @end
 
-
-
-
 @implementation YYViewHierarchy3D
+
 @synthesize holders = _holders;
+
 + (YYViewHierarchy3D *)sharedInstance
 {
     static dispatch_once_t once;
@@ -155,6 +161,7 @@
     dispatch_once(&once, ^{
         singleton = [[YYViewHierarchy3D alloc] init];
     });
+    
     return singleton;
 }
 
@@ -341,7 +348,7 @@
     for (int i = 0; i < aView.subviews.count; i++)
     {
         UIView *v = aView.subviews[i];
-        [self dumpView:v atDeep:deep + 1 + i / 10.0 atOriginDelta:subDelta toArray:holders];
+        [self dumpView:v atDeep:deep + 1 + i/10.0 atOriginDelta:subDelta toArray:holders];
     }
 }
 
@@ -377,6 +384,7 @@
         CGRect r = imgV.frame;
         
         CGRect scr = [UIScreen mainScreen].bounds;
+        //frame高宽越小，结果越大，frame越偏左上角结果越大
         imgV.layer.anchorPoint = CGPointMake((scr.size.width/2 - imgV.frame.origin.x)/imgV.frame.size.width,(scr.size.height/2 - imgV.frame.origin.y)/imgV.frame.size.height);
         imgV.layer.anchorPointZ = (-h.deep + 3) * 50;
 

@@ -20,6 +20,7 @@
 {
     BOOL pageStillLoading;
     CustomLayer *testLayer;
+    UIView *view;
 }
 
 @property (weak, nonatomic) IBOutlet UIImageView *image1;
@@ -37,7 +38,7 @@
 //    [self.image1 sd_setImageWithURL:[NSURL URLWithString:@"http://img2.selfimg.com.cn/Lself554/2015/10/12/1444646779_w8TQcc.jpg"]];
 //    CAShapeLayer *layer  =[CAShapeLayer layer];
 //    layer.path = [UIBezierPath bezierPathWithRoundedRect:self.view.bounds byRoundingCorners:UIRectCornerAllCorners cornerRadii:CGSizeMake(10, 10)].CGPath;
-    YFF_BaseModel *model = [[YFF_BaseModel alloc]initWithDataDic:@{@"name":@"tt"}];
+//    YFF_BaseModel *model = [[YFF_BaseModel alloc]initWithDataDic:@{@"name":@"tt"}];
 }
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
@@ -85,11 +86,41 @@
 {
     [super viewDidAppear:animated];
 //    [self test];
-//    [YYViewHierarchy3D show];
-
-    [self drawMyLayer];
+    [YYViewHierarchy3D show];
+    
+//    UIView *tmp = [[UIView alloc]initWithFrame:CGRectMake(60, 60, 60, 60)];
+//    tmp.backgroundColor = [UIColor cyanColor];
+//    [self.view addSubview:tmp];
+//    
+//    view = [[UIView alloc]initWithFrame:CGRectMake(60, 0, 60, 60)];
+//    view.backgroundColor = [UIColor blueColor];
+//    UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(pand:)];
+//    [view addGestureRecognizer:pan];
+//    [self.view addSubview:view];
+//    
+    
+//    [self drawMyLayer];
 //    UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"警告" message:@"没有相机访问权限，请在设置-隐私-相机中进行设置！" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"设置",nil];
 //    [alertView show];
+}
+- (void)pand:(UIPanGestureRecognizer *)gestureRecognizer
+{
+    static CGRect oldFrame;
+    if (gestureRecognizer.state == UIGestureRecognizerStateBegan)
+    {
+        oldFrame = gestureRecognizer.view.frame;
+    }
+    
+    CGPoint change = [gestureRecognizer translationInView:self.view];
+    CGPoint change2 = [gestureRecognizer locationInView:self.view];
+    
+//    NSLog(@"trans %.2f,%.2f",change.x,change.y);
+    NSLog(@"location %.2f,%.2f",change2.x,change2.y);
+    
+    CGRect newFrame = oldFrame;
+    newFrame.origin.x += change.x;
+    newFrame.origin.y += change.y;
+    view.frame = newFrame;
 }
 
 - (void)didReceiveMemoryWarning {
