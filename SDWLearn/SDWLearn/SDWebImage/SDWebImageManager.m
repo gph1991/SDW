@@ -132,7 +132,8 @@
     {
         url = [NSURL URLWithString:(NSString *)url];
     }
-
+    
+    //处理过后还不符合直接置位nil
     if (![url isKindOfClass:NSURL.class])
     {
         url = nil;
@@ -147,8 +148,10 @@
     {
         isFailedUrl = [self.failedURLs containsObject:url];
     }
-
+    
     //SDWebImageRetryFailed disabled the feature don't try when download failed;
+    //SDWebImageRetryFailed enabled the feature to try when download failed??
+
     if (!url || (!(options & SDWebImageRetryFailed) && isFailedUrl))
     {
         dispatch_main_sync_safe(^{
@@ -178,7 +181,7 @@
             return;
         }
         
-        //1没有缓存，2或者强制刷新,就开始下载。当前为1
+        //1没有缓存，或者 2强制刷新,就开始下载。通常为1
         //协议不响应默认为NO
         
         if ((!image || options & SDWebImageRefreshCached) && (![self.delegate respondsToSelector:@selector(imageManager:shouldDownloadImageForURL:)] || [self.delegate imageManager:self shouldDownloadImageForURL:url]))

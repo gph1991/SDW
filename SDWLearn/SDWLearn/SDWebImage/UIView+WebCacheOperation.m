@@ -34,6 +34,8 @@ static char loadOperationKey;
     [self sd_cancelImageLoadOperationWithKey:key];
     
     NSMutableDictionary *operationDictionary = [self operationDictionary];
+    
+    // 1先remove 2，使用同一个key。故每个view只能有一个request
     [operationDictionary setObject:operation forKey:key];
 }
 

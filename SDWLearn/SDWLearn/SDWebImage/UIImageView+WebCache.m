@@ -97,6 +97,7 @@ static char imageURLKey;
         }];
         
         // store new request
+        // UIImageViewImageLoad 用的都是这个参数，即每个view只能有一个请求。
         [self sd_setImageLoadOperation:operation forKey:@"UIImageViewImageLoad"];
     }
     else
