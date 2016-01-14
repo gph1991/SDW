@@ -89,11 +89,7 @@
     }
     
     CGPoint change = [gestureRecognizer translationInView:self];
-    CGPoint change2 = [gestureRecognizer locationInView:self];
     
-    NSLog(@"trans %.2f,%.2f",change.x,change.y);
-    NSLog(@"location %.2f,%.2f",change2.x,change2.y);
-
     CGRect newFrame = oldFrame;
     newFrame.origin.x += change.x;
     newFrame.origin.y += change.y;
@@ -183,6 +179,7 @@
 
 - (void)toggleShow
 {
+    //在执行动画中
     if (isAnimatimg)
     {
         return;
@@ -211,15 +208,31 @@
     static CGPoint oldPan;
     if (gestureRecognizer.state == UIGestureRecognizerStateBegan)
     {
-        oldPan = CGPointMake(rotateY, -rotateX);
+        oldPan = CGPointMake(rotateY, rotateX);
     }
     
     CGPoint change = [gestureRecognizer translationInView:self];
+    rotateX = oldPan.y - change.y;
     rotateY =  oldPan.x + change.x;
-    rotateX = -oldPan.y - change.y;
-    NSLog(@"old:%@,%@,x:%@,y:%@",[NSValue valueWithCGPoint:oldPan],[NSValue valueWithCGPoint:change],@(rotateX),@(rotateY));
+ 
+    NSLog(@"x:%@,y:%@",@(rotateX),@(rotateY));
     
     [self anime:0.1];
+}
+
+- (void)pinch:(UIPinchGestureRecognizer *)gestureRecognizer
+{
+    static float oldDist;
+    if (gestureRecognizer.state == UIGestureRecognizerStateBegan)
+    {
+        oldDist = dist;
+    }
+    
+    dist = oldDist + (gestureRecognizer.scale - 1);
+    dist = MAX(-5, MIN(0.5, dist));
+//    dist = dist < -5 ? -5 : dist > 0.5 ? 0.5 : dist;
+    [self anime:0.1];
+    NSLog(@"%.2f",dist);
 }
 
 - (void)anime:(float)time
@@ -235,6 +248,8 @@
     trans = CATransform3DConcat(trans, t);
     
     isAnimatimg = YES;
+    
+    
     [UIView animateWithDuration:time animations:^() {
         for (ViewImageHolder * holder in self.holders)
         {
@@ -243,19 +258,6 @@
     } completion:^(BOOL finished) {
         isAnimatimg = NO;
     }];
-}
-
-- (void)pinch:(UIPinchGestureRecognizer *)gestureRecognizer
-{
-    static float oldDist;
-    if (gestureRecognizer.state == UIGestureRecognizerStateBegan)
-    {
-        oldDist = dist;
-    }
-
-    dist = oldDist + (gestureRecognizer.scale - 1);
-    dist = dist < -5 ? -5 : dist > 0.5 ? 0.5 : dist;
-    [self anime:0.1];
 }
 
 + (void)show
@@ -335,6 +337,7 @@
         ViewImageHolder *holder = [[ViewImageHolder alloc] init];
         holder.image = [self renderImageForAntialiasing:img];
         holder.deep = deep;
+        //算出准确位置(基于屏幕或者VC.view)
         CGRect rect = [aView holderFrameWithDelta:originDelta];
         rect.origin.x -= 1;
         rect.origin.y -= 1;
@@ -386,14 +389,15 @@
         CGRect scr = [UIScreen mainScreen].bounds;
         //frame高宽越小，结果越大，frame越偏左上角结果越大
         imgV.layer.anchorPoint = CGPointMake((scr.size.width/2 - imgV.frame.origin.x)/imgV.frame.size.width,(scr.size.height/2 - imgV.frame.origin.y)/imgV.frame.size.height);
+        //值越小离屏幕越近，即越大
         imgV.layer.anchorPointZ = (-h.deep + 3) * 50;
-
+        
         imgV.frame = r;
         imgV.layer.opacity = 0.9;
         imgV.layer.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.1].CGColor;
     }
     
-    [self anime:0.3];
+    [self anime:.3];
 }
 
 - (void)startHide

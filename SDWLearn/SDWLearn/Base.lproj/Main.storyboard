@@ -53,6 +53,23 @@
                                     <action selector="zRotate:" destination="BYZ-38-t0r" eventType="touchUpInside" id="GIL-qI-mFr"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JhA-ln-qg2">
+                                <rect key="frame" x="30" y="430" width="253" height="87"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hPz-Ao-SBj">
+                                        <rect key="frame" x="8" y="21" width="84" height="46"/>
+                                        <animations/>
+                                        <color key="backgroundColor" red="1" green="0.67042581290000003" blue="0.126926489" alpha="1" colorSpace="calibratedRGB"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ldc-H2-vpz">
+                                        <rect key="frame" x="117" y="22" width="84" height="46"/>
+                                        <animations/>
+                                        <color key="backgroundColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    </view>
+                                </subviews>
+                                <animations/>
+                                <color key="backgroundColor" red="1" green="0.74770923649999999" blue="0.78218381820000005" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>

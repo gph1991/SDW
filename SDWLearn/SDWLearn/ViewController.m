@@ -90,14 +90,16 @@
     
 //    UIView *tmp = [[UIView alloc]initWithFrame:CGRectMake(60, 60, 60, 60)];
 //    tmp.backgroundColor = [UIColor cyanColor];
+//    tmp.layer.anchorPointZ = -5;
 //    [self.view addSubview:tmp];
-//    
+////
 //    view = [[UIView alloc]initWithFrame:CGRectMake(60, 0, 60, 60)];
 //    view.backgroundColor = [UIColor blueColor];
 //    UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(pand:)];
+//    view.layer.anchorPointZ = -500;
 //    [view addGestureRecognizer:pan];
 //    [self.view addSubview:view];
-//    
+//
     
 //    [self drawMyLayer];
 //    UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"警告" message:@"没有相机访问权限，请在设置-隐私-相机中进行设置！" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"设置",nil];
