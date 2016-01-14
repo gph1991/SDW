@@ -51,7 +51,6 @@ static char imageURLKey;
     
     //存储对象
     objc_setAssociatedObject(self, &imageURLKey, url, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-
     if (!(options & SDWebImageDelayPlaceholder))
     {
         //options 非SDWebImageDelayPlaceholder就加载占位图
@@ -67,11 +66,14 @@ static char imageURLKey;
             {
                return;
             }
+            
+            // call UI update ,must in main thread
             dispatch_main_sync_safe(^{
                 if (!wself)
                 {
                     return;  
                 }
+                
                 if (image)
                 {
                      wself.image = image;
@@ -79,11 +81,10 @@ static char imageURLKey;
                 }
                 else
                 {
+                    //是否是延迟占位图
                     if ((options & SDWebImageDelayPlaceholder))
                     {
                         wself.image = placeholder;
-                        
-                        // call UI update ,must in main thread
                         [wself setNeedsLayout];
                     }
                 }
@@ -100,9 +101,11 @@ static char imageURLKey;
     }
     else
     {
+        // url invalid
         dispatch_main_async_safe(^{
             NSError *error = [NSError errorWithDomain:@"SDWebImageErrorDomain" code:-1 userInfo:@{NSLocalizedDescriptionKey : @"Trying to load a nil url"}];
-            if (completedBlock) {
+            if (completedBlock)
+            {
                 completedBlock(nil, error, SDImageCacheTypeNone, url);
             }
         });
@@ -224,9 +227,11 @@ static char imageURLKey;
     }];
 }
 
-- (void)setImageWithURL:(NSURL *)url placeholderImage:(UIImage *)placeholder options:(SDWebImageOptions)options progress:(SDWebImageDownloaderProgressBlock)progressBlock completed:(SDWebImageCompletedBlock)completedBlock {
+- (void)setImageWithURL:(NSURL *)url placeholderImage:(UIImage *)placeholder options:(SDWebImageOptions)options progress:(SDWebImageDownloaderProgressBlock)progressBlock completed:(SDWebImageCompletedBlock)completedBlock
+{
     [self sd_setImageWithURL:url placeholderImage:placeholder options:options progress:progressBlock completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-        if (completedBlock) {
+        if (completedBlock)
+        {
             completedBlock(image, error, cacheType);
         }
     }];

@@ -28,7 +28,8 @@
 
 @implementation SDWebImageManager
 
-+ (id)sharedManager {
++ (id)sharedManager
+{
     static dispatch_once_t once;
     static id instance;
     dispatch_once(&once, ^{
@@ -37,8 +38,10 @@
     return instance;
 }
 
-- (id)init {
-    if ((self = [super init])) {
+- (id)init
+{
+    if ((self = [super init]))
+    {
         _imageCache = [self createCache];
         _imageDownloader = [SDWebImageDownloader sharedDownloader];
         _failedURLs = [NSMutableArray new];
@@ -47,33 +50,40 @@
     return self;
 }
 
-- (SDImageCache *)createCache {
+- (SDImageCache *)createCache
+{
     return [SDImageCache sharedImageCache];
 }
 
-- (NSString *)cacheKeyForURL:(NSURL *)url {
+- (NSString *)cacheKeyForURL:(NSURL *)url
+{
     //进行过滤
-    if (self.cacheKeyFilter) {
+    if (self.cacheKeyFilter)
+    {
         return self.cacheKeyFilter(url);
     }
-    else {
+    else
+    {
         return [url absoluteString];
     }
 }
 
-- (BOOL)cachedImageExistsForURL:(NSURL *)url {
+- (BOOL)cachedImageExistsForURL:(NSURL *)url
+{
     NSString *key = [self cacheKeyForURL:url];
     if ([self.imageCache imageFromMemoryCacheForKey:key] != nil) return YES;
     return [self.imageCache diskImageExistsWithKey:key];
 }
 
-- (BOOL)diskImageExistsForURL:(NSURL *)url {
+- (BOOL)diskImageExistsForURL:(NSURL *)url
+{
     NSString *key = [self cacheKeyForURL:url];
     return [self.imageCache diskImageExistsWithKey:key];
 }
 
 - (void)cachedImageExistsForURL:(NSURL *)url
-                     completion:(SDWebImageCheckCacheCompletionBlock)completionBlock {
+                     completion:(SDWebImageCheckCacheCompletionBlock)completionBlock
+{
     NSString *key = [self cacheKeyForURL:url];
     
     BOOL isInMemoryCache = ([self.imageCache imageFromMemoryCacheForKey:key] != nil);
@@ -99,7 +109,8 @@
 }
 
 - (void)diskImageExistsForURL:(NSURL *)url
-                   completion:(SDWebImageCheckCacheCompletionBlock)completionBlock {
+                   completion:(SDWebImageCheckCacheCompletionBlock)completionBlock
+{
     NSString *key = [self cacheKeyForURL:url];
     
     [self.imageCache diskImageExistsWithKey:key completion:^(BOOL isInDiskCache) {
@@ -346,7 +357,8 @@
 
 @implementation SDWebImageCombinedOperation
 
-- (void)setCancelBlock:(SDWebImageNoParamsBlock)cancelBlock {
+- (void)setCancelBlock:(SDWebImageNoParamsBlock)cancelBlock
+{
     // check if the operation is already cancelled, then we just call the cancelBlock
     if (self.isCancelled)
     {

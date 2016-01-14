@@ -23,7 +23,7 @@
                                 <color key="backgroundColor" red="1" green="0.2364644444" blue="0.32429074250000001" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IIZ-z2-ZZ8">
-                                <rect key="frame" x="268" y="185" width="103" height="92"/>
+                                <rect key="frame" x="203" y="185" width="103" height="92"/>
                                 <animations/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LGj-n4-qMo">

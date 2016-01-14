@@ -18,9 +18,11 @@ static char loadOperationKey;
     NSMutableDictionary *operations = objc_getAssociatedObject(self, &loadOperationKey);
     if (operations)
     {
+        //有就直接返回
         return operations;
     }
     
+    //创建新的
     operations = [NSMutableDictionary dictionary];
     objc_setAssociatedObject(self, &loadOperationKey, operations, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     return operations;
@@ -30,6 +32,7 @@ static char loadOperationKey;
 {
     // fisrt remove， second set；
     [self sd_cancelImageLoadOperationWithKey:key];
+    
     NSMutableDictionary *operationDictionary = [self operationDictionary];
     [operationDictionary setObject:operation forKey:key];
 }
@@ -55,6 +58,7 @@ static char loadOperationKey;
         {
             [(id<SDWebImageOperation>) operations cancel];
         }
+
         [operationDictionary removeObjectForKey:key];
     }
 }
