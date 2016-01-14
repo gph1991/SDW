@@ -192,6 +192,8 @@
                 dispatch_main_sync_safe(^{
                     // If image was found in the cache but SDWebImageRefreshCached is provided, notify about the cached image
                     // AND try to re-download it in order to let a chance to NSURLCache to refresh it from server.
+                    
+                    //刷新后再次下载
                     completedBlock(image, nil, cacheType, YES, url);
                 });
             }
@@ -224,6 +226,7 @@
                 }
                 else if (error)
                 {
+                    //have error
                     dispatch_main_sync_safe(^{
                         if (!weakOperation.isCancelled)
                         {
@@ -250,6 +253,7 @@
                     // NOTE: We don't call transformDownloadedImage delegate method on animated images as most transformation code would mangle it
                     else if (downloadedImage && !downloadedImage.images && [self.delegate respondsToSelector:@selector(imageManager:transformDownloadedImage:withURL:)])
                     {
+                        //一般这里不会执行
                         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
                             UIImage *transformedImage = [self.delegate imageManager:self transformDownloadedImage:downloadedImage withURL:url];
 
@@ -290,15 +294,18 @@
                         [self.runningOperations removeObject:operation];
                     }
                 }
-            }];//subOperation .downloadOperation
+                
+            }];//subOperation
             
             operation.cancelBlock = ^{
+                //关联起来 (operation,subOperation)
                 [subOperation cancel];
                 @synchronized (self.runningOperations) {
                     [self.runningOperations removeObject:weakOperation];
                 }
             };
-        }//if ((!image
+            
+        }//if ((!image || options & SDWebImageRefreshCached)
         else if (image)
         {
             //有缓存
@@ -329,7 +336,7 @@
     }];//big block
 
     NSLog(@"big fun return;");
-    
+    // return the value to save with the view
     return operation;
 }
 
