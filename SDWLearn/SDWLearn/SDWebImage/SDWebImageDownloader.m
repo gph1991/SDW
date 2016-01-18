@@ -208,6 +208,7 @@ static NSString *const kCompletedCallbackKey = @"completed";
             operation.queuePriority = NSOperationQueuePriorityLow;
         }
 
+        //add
         [wself.downloadQueue addOperation:operation];
         if (wself.executionOrder == SDWebImageDownloaderLIFOExecutionOrder)
         {

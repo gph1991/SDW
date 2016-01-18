@@ -59,6 +59,7 @@
         _expectedSize = 0;
         responseFromCached = YES; // Initially wrong until `connection:willCacheResponse:` is called or not called
     }
+    
     return self;
 }
 
@@ -147,7 +148,6 @@
     @synchronized (self) {
         if (self.thread)
         {
-            
             //已经启动了一个线程，必须CFRunLoopStop
             [self performSelector:@selector(cancelInternalAndStop) onThread:self.thread withObject:nil waitUntilDone:NO];
         }
@@ -165,9 +165,9 @@
         return;
     }
     [self cancelInternal];
+    
     CFRunLoopStop(CFRunLoopGetCurrent());
 }
-
 
 - (void)cancelInternal
 {
@@ -204,8 +204,8 @@
 
 - (void)done
 {
-    self.finished = YES;
     self.executing = NO;
+    self.finished = YES;
     [self reset];
 }
 
