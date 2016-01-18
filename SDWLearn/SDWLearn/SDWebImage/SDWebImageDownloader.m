@@ -122,7 +122,6 @@ static NSString *const kCompletedCallbackKey = @"completed";
 
     [self addProgressCallback:progressBlock andCompletedBlock:completedBlock forURL:url createCallback:^
     {
-        
         //如果第一次下载，会调用
         NSTimeInterval timeoutInterval = wself.downloadTimeout;
         if (timeoutInterval == 0.0)
@@ -166,7 +165,10 @@ static NSString *const kCompletedCallbackKey = @"completed";
         } completed:^(UIImage *image, NSData *data, NSError *error, BOOL finished)
         {
              SDWebImageDownloader *sself = wself;
-             if (!sself) return;
+             if (!sself)
+             {
+                 return;
+             }
              NSArray *callbacksForURL = [sself callbacksForURL:url];
              if (finished)
              {
@@ -176,12 +178,19 @@ static NSString *const kCompletedCallbackKey = @"completed";
              for (NSDictionary *callbacks in callbacksForURL)
              {
                  SDWebImageDownloaderCompletedBlock callback = callbacks[kCompletedCallbackKey];
-                 if (callback) callback(image, data, error, finished);
+                 if (callback)
+                 {
+                     callback(image, data, error, finished);
+                 }
              }
         } cancelled:^
         {
              SDWebImageDownloader *sself = wself;
-             if (!sself) return;
+             if (!sself)
+             {
+                 return;
+             }
+            
              [sself removeCallbacksForURL:url];
         }];
         
@@ -232,7 +241,7 @@ static NSString *const kCompletedCallbackKey = @"completed";
             self.URLCallbacks[url] = [NSMutableArray new];
             first = YES;
         }
-
+        
         // Handle single download of simultaneous download request for the same URL
         
         NSMutableArray *callbacksForURL = self.URLCallbacks[url];
@@ -263,6 +272,7 @@ static NSString *const kCompletedCallbackKey = @"completed";
     dispatch_sync(self.barrierQueue, ^{
         callbacksForURL = self.URLCallbacks[url];
     });
+    
     return [callbacksForURL copy];
 }
 

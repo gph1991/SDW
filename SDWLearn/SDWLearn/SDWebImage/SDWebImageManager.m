@@ -228,6 +228,7 @@
                 {
                     //have error
                     dispatch_main_sync_safe(^{
+                        //when create new request，the previous request would cancel；
                         if (!weakOperation.isCancelled)
                         {
                             completedBlock(nil, error, SDImageCacheTypeNone, finished, url);
