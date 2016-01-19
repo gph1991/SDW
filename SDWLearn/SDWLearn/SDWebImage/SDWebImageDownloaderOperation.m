@@ -164,6 +164,7 @@
     {
         return;
     }
+    
     [self cancelInternal];
     
     CFRunLoopStop(CFRunLoopGetCurrent());
@@ -272,7 +273,6 @@
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
 {
     [self.imageData appendData:data];
-
     
     //默认不是 SDWebImageDownloaderProgressiveDownload。
     if ((self.options & SDWebImageDownloaderProgressiveDownload) && self.expectedSize > 0 && self.completedBlock)
@@ -437,6 +437,7 @@
             }
         }
     }
+    
     self.completionBlock = nil;
     [self done];
 }

@@ -342,32 +342,34 @@ BOOL ImageDataHasPNGPreffix(NSData *data)
     }
 
     NSOperation *operation = [NSOperation new];
+    
     dispatch_async(self.ioQueue, ^{
         if (operation.isCancelled)
         {
             return;
         }
         
-        NSLog(@"磁盘");
+        NSLog(@"查看磁盘是否存在");
 
         //磁盘缓存
-        @autoreleasepool {
+        @autoreleasepool
+        {
             UIImage *diskImage = [self diskImageForKey:key];
             if (diskImage)
             {
                 CGFloat cost = diskImage.size.height * diskImage.size.width * diskImage.scale;
                 [self.memCache setObject:diskImage forKey:key cost:cost];
             }
-
+            NSLog(@"即将在dispatch_async执行磁盘doneBlock");
+            //must in main thread to update UI
             dispatch_async(dispatch_get_main_queue(), ^{
                 NSLog(@"磁盘doneBlock");
-
                 doneBlock(diskImage, SDImageCacheTypeDisk);
             });
         }
     });
 
-    NSLog(@"return");
+    NSLog(@"return from cache query");
     return operation;
 }
 
