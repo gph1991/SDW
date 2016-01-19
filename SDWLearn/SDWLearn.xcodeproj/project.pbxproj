@@ -31,6 +31,9 @@
 		187D3C911C03FFAD00586107 /* NavigationInteractiveTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 187D3C901C03FFAD00586107 /* NavigationInteractiveTransition.m */; };
 		18B9BBF21BFF1EBD006AA210 /* RunLoopSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B9BBF11BFF1EBD006AA210 /* RunLoopSource.m */; };
 		18DED6981C02AA6B00659B58 /* YYViewHierarchy3D.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DED6971C02AA6B00659B58 /* YYViewHierarchy3D.m */; };
+		18F7A7A71C4E2F900012EF6D /* wx.png in Resources */ = {isa = PBXBuildFile; fileRef = 18F7A7A51C4E2F900012EF6D /* wx.png */; settings = {ASSET_TAGS = (); }; };
+		18F7A7A81C4E2F900012EF6D /* wx1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18F7A7A61C4E2F900012EF6D /* wx1@2x.png */; settings = {ASSET_TAGS = (); }; };
+		18F7A7AB1C4E34300012EF6D /* UIImage+Rotate_Flip.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F7A7AA1C4E34300012EF6D /* UIImage+Rotate_Flip.m */; settings = {ASSET_TAGS = (); }; };
 		51BE76BD1BCC95EB00CE5A62 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 51BE76BC1BCC95EB00CE5A62 /* main.m */; };
 		51BE76C01BCC95EB00CE5A62 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 51BE76BF1BCC95EB00CE5A62 /* AppDelegate.m */; };
 		51BE76C31BCC95EB00CE5A62 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 51BE76C21BCC95EB00CE5A62 /* ViewController.m */; };
@@ -100,6 +103,10 @@
 		18B9BBF11BFF1EBD006AA210 /* RunLoopSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RunLoopSource.m; sourceTree = "<group>"; };
 		18DED6961C02AA6B00659B58 /* YYViewHierarchy3D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYViewHierarchy3D.h; sourceTree = "<group>"; };
 		18DED6971C02AA6B00659B58 /* YYViewHierarchy3D.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYViewHierarchy3D.m; sourceTree = "<group>"; };
+		18F7A7A51C4E2F900012EF6D /* wx.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wx.png; sourceTree = "<group>"; };
+		18F7A7A61C4E2F900012EF6D /* wx1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wx1@2x.png"; sourceTree = "<group>"; };
+		18F7A7A91C4E34300012EF6D /* UIImage+Rotate_Flip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Rotate_Flip.h"; sourceTree = "<group>"; };
+		18F7A7AA1C4E34300012EF6D /* UIImage+Rotate_Flip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Rotate_Flip.m"; sourceTree = "<group>"; };
 		51BE76B71BCC95EB00CE5A62 /* SDWLearn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SDWLearn.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		51BE76BB1BCC95EB00CE5A62 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		51BE76BC1BCC95EB00CE5A62 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -186,8 +193,12 @@
 		51BE76BA1BCC95EB00CE5A62 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				18F7A7A51C4E2F900012EF6D /* wx.png */,
+				18F7A7A61C4E2F900012EF6D /* wx1@2x.png */,
 				51BE76BB1BCC95EB00CE5A62 /* Info.plist */,
 				51BE76BC1BCC95EB00CE5A62 /* main.m */,
+				18F7A7A91C4E34300012EF6D /* UIImage+Rotate_Flip.h */,
+				18F7A7AA1C4E34300012EF6D /* UIImage+Rotate_Flip.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -334,6 +345,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18F7A7A71C4E2F900012EF6D /* wx.png in Resources */,
+				18F7A7A81C4E2F900012EF6D /* wx1@2x.png in Resources */,
 				51BE76C61BCC95EB00CE5A62 /* Main.storyboard in Resources */,
 				51BE76CB1BCC95EB00CE5A62 /* LaunchScreen.xib in Resources */,
 				51BE76C81BCC95EB00CE5A62 /* Images.xcassets in Resources */,
@@ -379,6 +392,7 @@
 				180EB2A81C474FEC009EE707 /* UIImage+WebP.m in Sources */,
 				180EB2A31C474FEC009EE707 /* SDWebImageManager.m in Sources */,
 				51BE76BD1BCC95EB00CE5A62 /* main.m in Sources */,
+				18F7A7AB1C4E34300012EF6D /* UIImage+Rotate_Flip.m in Sources */,
 				183832F41C1A9F650049F470 /* CustomLayer.m in Sources */,
 				180EB29E1C474FEC009EE707 /* SDImageCache.m in Sources */,
 			);
