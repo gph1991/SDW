@@ -28,6 +28,7 @@
     CGBitmapInfo bitmapInfo = CGImageGetBitmapInfo(imageRef);
 
     int infoMask = (bitmapInfo & kCGBitmapAlphaInfoMask);
+    
     BOOL anyNonAlpha = (infoMask == kCGImageAlphaNone ||
             infoMask == kCGImageAlphaNoneSkipFirst ||
             infoMask == kCGImageAlphaNoneSkipLast);
