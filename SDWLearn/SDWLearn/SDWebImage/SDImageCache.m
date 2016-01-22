@@ -140,7 +140,7 @@ BOOL ImageDataHasPNGPreffix(NSData *data)
 }
 
 #pragma mark SDImageCache (private)
-
+//MD5
 - (NSString *)cachedFileNameForKey:(NSString *)key
 {
     const char *str = [key UTF8String];
@@ -150,8 +150,7 @@ BOOL ImageDataHasPNGPreffix(NSData *data)
     }
     unsigned char r[CC_MD5_DIGEST_LENGTH];
     CC_MD5(str, (CC_LONG)strlen(str), r);
-    NSString *filename = [NSString stringWithFormat:@"%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x",
-                                                    r[0], r[1], r[2], r[3], r[4], r[5], r[6], r[7], r[8], r[9], r[10], r[11], r[12], r[13], r[14], r[15]];
+    NSString *filename = [NSString stringWithFormat:@"%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x",r[0], r[1], r[2], r[3], r[4], r[5], r[6], r[7], r[8], r[9], r[10], r[11], r[12], r[13], r[14], r[15]];
 
     return filename;
 }
@@ -203,7 +202,8 @@ BOOL ImageDataHasPNGPreffix(NSData *data)
                 data = [NSBitmapImageRep representationOfImageRepsInArray:image.representations usingType: NSJPEGFileType properties:nil];
 #endif
             }
-
+            UIView;
+            
             if (data)
             {
                 if (![_fileManager fileExistsAtPath:_diskCachePath])
@@ -301,6 +301,7 @@ BOOL ImageDataHasPNGPreffix(NSData *data)
 - (UIImage *)diskImageForKey:(NSString *)key
 {
     NSData *data = [self diskImageDataBySearchingAllPathsForKey:key];
+    
     if (data)
     {
         UIImage *image = [UIImage sd_imageWithData:data];
@@ -357,9 +358,11 @@ BOOL ImageDataHasPNGPreffix(NSData *data)
             UIImage *diskImage = [self diskImageForKey:key];
             if (diskImage)
             {
+                // just cached in disk,copy to memory
                 CGFloat cost = diskImage.size.height * diskImage.size.width * diskImage.scale;
                 [self.memCache setObject:diskImage forKey:key cost:cost];
             }
+            
             NSLog(@"即将在dispatch_async执行磁盘doneBlock");
             //must in main thread to update UI
             dispatch_async(dispatch_get_main_queue(), ^{

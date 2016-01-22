@@ -62,7 +62,10 @@
     CGColorSpaceRelease(colorSpace);
 
     // If failed, return undecompressed image
-    if (!context) return image;
+    if (!context)
+    {
+        return image;
+    }
 
     CGContextDrawImage(context, imageRect, imageRef);
     CGImageRef decompressedImageRef = CGBitmapContextCreateImage(context);
