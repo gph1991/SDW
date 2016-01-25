@@ -27,7 +27,8 @@
 
 @implementation SDWebImagePrefetcher
 
-+ (SDWebImagePrefetcher *)sharedImagePrefetcher {
++ (SDWebImagePrefetcher *)sharedImagePrefetcher
+{
     static dispatch_once_t once;
     static id instance;
     dispatch_once(&once, ^{
@@ -36,8 +37,10 @@
     return instance;
 }
 
-- (id)init {
-    if ((self = [super init])) {
+- (id)init
+{
+    if ((self = [super init]))
+    {
         _manager = [SDWebImageManager new];
         _options = SDWebImageLowPriority;
         self.maxConcurrentDownloads = 3;
@@ -45,15 +48,18 @@
     return self;
 }
 
-- (void)setMaxConcurrentDownloads:(NSUInteger)maxConcurrentDownloads {
+- (void)setMaxConcurrentDownloads:(NSUInteger)maxConcurrentDownloads
+{
     self.manager.imageDownloader.maxConcurrentDownloads = maxConcurrentDownloads;
 }
 
-- (NSUInteger)maxConcurrentDownloads {
+- (NSUInteger)maxConcurrentDownloads
+{
     return self.manager.imageDownloader.maxConcurrentDownloads;
 }
 
-- (void)startPrefetchingAtIndex:(NSUInteger)index {
+- (void)startPrefetchingAtIndex:(NSUInteger)index
+{
     if (index >= self.prefetchURLs.count) return;
     self.requestedCount++;
     [self.manager downloadImageWithURL:self.prefetchURLs[index] options:self.options progress:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {

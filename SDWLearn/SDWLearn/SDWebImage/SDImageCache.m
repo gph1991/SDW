@@ -81,6 +81,7 @@ BOOL ImageDataHasPNGPreffix(NSData *data)
 
         // Init the disk cache
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+ 
         _diskCachePath = [paths[0] stringByAppendingPathComponent:fullNamespace];
 
         dispatch_sync(_ioQueue, ^{
@@ -128,12 +129,14 @@ BOOL ImageDataHasPNGPreffix(NSData *data)
     }
 }
 
+//用指定的文件名和目录合成新的路径
 - (NSString *)cachePathForKey:(NSString *)key inPath:(NSString *)path
 {
     NSString *filename = [self cachedFileNameForKey:key];
     return [path stringByAppendingPathComponent:filename];
 }
 
+//根据指定的文件名(key)获得路径
 - (NSString *)defaultCachePathForKey:(NSString *)key
 {
     return [self cachePathForKey:key inPath:self.diskCachePath];
@@ -202,7 +205,6 @@ BOOL ImageDataHasPNGPreffix(NSData *data)
                 data = [NSBitmapImageRep representationOfImageRepsInArray:image.representations usingType: NSJPEGFileType properties:nil];
 #endif
             }
-            UIView;
             
             if (data)
             {
@@ -304,8 +306,11 @@ BOOL ImageDataHasPNGPreffix(NSData *data)
     
     if (data)
     {
+        //处理方向
         UIImage *image = [UIImage sd_imageWithData:data];
+        //处理images和scale
         image = [self scaledImageForKey:key image:image];
+        
         image = [UIImage decodedImageWithImage:image];
         return image;
     }
@@ -393,7 +398,6 @@ BOOL ImageDataHasPNGPreffix(NSData *data)
 
 - (void)removeImageForKey:(NSString *)key fromDisk:(BOOL)fromDisk withCompletion:(SDWebImageNoParamsBlock)completion
 {
-    
     if (key == nil)
     {
         return;
@@ -418,7 +422,6 @@ BOOL ImageDataHasPNGPreffix(NSData *data)
     {
         completion();
     }
-    
 }
 
 - (void)setMaxMemoryCost:(NSUInteger)maxMemoryCost
@@ -489,7 +492,6 @@ BOOL ImageDataHasPNGPreffix(NSData *data)
         for (NSURL *fileURL in fileEnumerator)
         {
             NSDictionary *resourceValues = [fileURL resourceValuesForKeys:resourceKeys error:NULL];
-
             // Skip directories.
             if ([resourceValues[NSURLIsDirectoryKey] boolValue])
             {
@@ -498,9 +500,10 @@ BOOL ImageDataHasPNGPreffix(NSData *data)
 
             // Remove files that are older than the expiration date;
             NSDate *modificationDate = resourceValues[NSURLContentModificationDateKey];
+            
             if ([[modificationDate laterDate:expirationDate] isEqualToDate:expirationDate])
             {
-                //modificationDate older than expireationDate
+                //modificationDate older than expireationDate ,will delete
                 [urlsToDelete addObject:fileURL];
                 continue;
             }

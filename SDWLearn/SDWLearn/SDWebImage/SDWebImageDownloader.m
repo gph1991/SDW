@@ -33,7 +33,8 @@ static NSString *const kCompletedCallbackKey = @"completed";
 {
     // Bind SDNetworkActivityIndicator if available (download it here: http://github.com/rs/SDNetworkActivityIndicator )
     // To use it, just add #import "SDNetworkActivityIndicator.h" in addition to the SDWebImage import
-    if (NSClassFromString(@"SDNetworkActivityIndicator")) {
+    if (NSClassFromString(@"SDNetworkActivityIndicator"))
+    {
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
@@ -63,7 +64,8 @@ static NSString *const kCompletedCallbackKey = @"completed";
     return instance;
 }
 
-- (id)init {
+- (id)init
+{
     if ((self = [super init]))
     {
         _executionOrder = SDWebImageDownloaderFIFOExecutionOrder;

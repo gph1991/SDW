@@ -66,7 +66,7 @@
     {
         return image;
     }
-
+    
     CGContextDrawImage(context, imageRect, imageRef);
     CGImageRef decompressedImageRef = CGBitmapContextCreateImage(context);
 
