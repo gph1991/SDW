@@ -66,14 +66,18 @@
         if (!finished) return;
         self.finishedCount++;
 
-        if (image) {
-            if (self.progressBlock) {
+        if (image)
+        {
+            if (self.progressBlock)
+            {
                 self.progressBlock(self.finishedCount,[self.prefetchURLs count]);
             }
             NSLog(@"Prefetched %@ out of %@", @(self.finishedCount), @(self.prefetchURLs.count));
         }
-        else {
-            if (self.progressBlock) {
+        else
+        {
+            if (self.progressBlock)
+            {
                 self.progressBlock(self.finishedCount,[self.prefetchURLs count]);
             }
             NSLog(@"Prefetched %@ out of %@ (Failed)", @(self.finishedCount), @(self.prefetchURLs.count));
@@ -81,7 +85,8 @@
             // Add last failed
             self.skippedCount++;
         }
-        if ([self.delegate respondsToSelector:@selector(imagePrefetcher:didPrefetchURL:finishedCount:totalCount:)]) {
+        if ([self.delegate respondsToSelector:@selector(imagePrefetcher:didPrefetchURL:finishedCount:totalCount:)])
+        {
             [self.delegate imagePrefetcher:self
                             didPrefetchURL:self.prefetchURLs[index]
                              finishedCount:self.finishedCount
@@ -89,14 +94,17 @@
             ];
         }
 
-        if (self.prefetchURLs.count > self.requestedCount) {
+        if (self.prefetchURLs.count > self.requestedCount)
+        {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self startPrefetchingAtIndex:self.requestedCount];
             });
         }
-        else if (self.finishedCount == self.requestedCount) {
+        else if (self.finishedCount == self.requestedCount)
+        {
             [self reportStatus];
-            if (self.completionBlock) {
+            if (self.completionBlock)
+            {
                 self.completionBlock(self.finishedCount, self.skippedCount);
                 self.completionBlock = nil;
             }
@@ -104,7 +112,8 @@
     }];
 }
 
-- (void)reportStatus {
+- (void)reportStatus
+{
     NSUInteger total = [self.prefetchURLs count];
     NSLog(@"Finished prefetching (%@ successful, %@ skipped, timeElasped %.2f)", @(total - self.skippedCount), @(self.skippedCount), CFAbsoluteTimeGetCurrent() - self.startedTime);
     if ([self.delegate respondsToSelector:@selector(imagePrefetcher:didFinishWithTotalCount:skippedCount:)]) {
@@ -115,11 +124,13 @@
     }
 }
 
-- (void)prefetchURLs:(NSArray *)urls {
+- (void)prefetchURLs:(NSArray *)urls
+{
     [self prefetchURLs:urls progress:nil completed:nil];
 }
 
-- (void)prefetchURLs:(NSArray *)urls progress:(SDWebImagePrefetcherProgressBlock)progressBlock completed:(SDWebImagePrefetcherCompletionBlock)completionBlock {
+- (void)prefetchURLs:(NSArray *)urls progress:(SDWebImagePrefetcherProgressBlock)progressBlock completed:(SDWebImagePrefetcherCompletionBlock)completionBlock
+{
     [self cancelPrefetching]; // Prevent duplicate prefetch request
     self.startedTime = CFAbsoluteTimeGetCurrent();
     self.prefetchURLs = urls;
@@ -128,7 +139,8 @@
 
     // Starts prefetching from the very first image on the list with the max allowed concurrency
     NSUInteger listCount = self.prefetchURLs.count;
-    for (NSUInteger i = 0; i < self.maxConcurrentDownloads && self.requestedCount < listCount; i++) {
+    for (NSUInteger i = 0; i < self.maxConcurrentDownloads && self.requestedCount < listCount; i++)
+    {
         [self startPrefetchingAtIndex:i];
     }
 }

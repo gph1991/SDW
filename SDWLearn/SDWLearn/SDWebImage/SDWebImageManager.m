@@ -71,7 +71,11 @@
 - (BOOL)cachedImageExistsForURL:(NSURL *)url
 {
     NSString *key = [self cacheKeyForURL:url];
-    if ([self.imageCache imageFromMemoryCacheForKey:key] != nil) return YES;
+    if ([self.imageCache imageFromMemoryCacheForKey:key] != nil)
+    {
+        return YES;
+    }
+    
     return [self.imageCache diskImageExistsWithKey:key];
 }
 
@@ -152,6 +156,7 @@
     //SDWebImageRetryFailed disabled the feature don't try when download failed;
     //SDWebImageRetryFailed enabled the feature to try when download failed??
 
+    //不是SDWebImageRetryFailed 且请求失败过
     if (!url || (!(options & SDWebImageRetryFailed) && isFailedUrl))
     {
         dispatch_main_sync_safe(^{
