@@ -240,7 +240,6 @@
 }
 
 #pragma mark NSURLConnection (delegate)
-
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
 {
     if (![response respondsToSelector:@selector(statusCode)] || [((NSHTTPURLResponse *)response) statusCode] < 400)
@@ -287,9 +286,11 @@
         CGImageSourceRef imageSource = CGImageSourceCreateIncremental(NULL);
         CGImageSourceUpdateData(imageSource, (__bridge CFDataRef)self.imageData, totalSize == self.expectedSize);
 
+        //只执行一次
         if (width + height == 0)
         {
             CFDictionaryRef properties = CGImageSourceCopyPropertiesAtIndex(imageSource, 0, NULL);
+            
             if (properties)
             {
                 NSInteger orientationValue = -1;
@@ -308,7 +309,7 @@
                 orientation = [[self class] orientationFromPropertyValue:(orientationValue == -1 ? 1 : orientationValue)];
             }
         }
-
+        
         if (width + height > 0 && totalSize < self.expectedSize)
         {
             // Create the image
@@ -318,7 +319,7 @@
             // Workaround for iOS anamorphic image
             if (partialImageRef)
             {
-                //height is changeing
+                //height is changing until finish
                 const size_t partialHeight = CGImageGetHeight(partialImageRef);
                 CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
                 CGContextRef bmContext = CGBitmapContextCreate(NULL, width, height, 8, width * 4, colorSpace, kCGBitmapByteOrderDefault | kCGImageAlphaPremultipliedFirst);
@@ -337,7 +338,6 @@
                 }
             }
 #endif
-
             if (partialImageRef)
             {
                 UIImage *image = [UIImage imageWithCGImage:partialImageRef scale:1 orientation:orientation];
@@ -412,6 +412,7 @@
     
     if (completionBlock)
     {
+        //如果是不使用缓存，且数据来自缓存
         if (self.options & SDWebImageDownloaderIgnoreCachedResponse && responseFromCached)
         {
             completionBlock(nil, nil, nil, YES);
@@ -454,12 +455,13 @@
 
     [self done];
 }
-
+//将要缓存会调用 即以前没有缓存过
 - (NSCachedURLResponse *)connection:(NSURLConnection *)connection willCacheResponse:(NSCachedURLResponse *)cachedResponse
 {
     responseFromCached = NO; // If this method is called, it means the response wasn't read from cache
     if (self.request.cachePolicy == NSURLRequestReloadIgnoringLocalCacheData)
     {
+        //完全忽略本地缓存
         // Prevents caching of responses
         return nil;
     }

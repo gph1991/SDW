@@ -212,12 +212,13 @@ static NSString *const kCompletedCallbackKey = @"completed";
 
         //add
         [wself.downloadQueue addOperation:operation];
+        
         if (wself.executionOrder == SDWebImageDownloaderLIFOExecutionOrder)
         {
             // Emulate LIFO execution order by systematically adding new operations as last operation's dependency
             [wself.lastAddedOperation addDependency:operation];
             wself.lastAddedOperation = operation;
-            //即前面的任务依赖于后面的任务。后面的任务会优先完成?
+            //即前面的任务依赖于后面的任务。后面的任务会优先完成
         }
     }];
 
