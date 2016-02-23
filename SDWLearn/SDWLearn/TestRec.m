@@ -67,5 +67,21 @@
     return CGRectContainsPoint(self.bounds, point);
 }
 
+    //裁剪图片
+//    CGSize itemSize = CGSizeMake(kAppIconSize, kAppIconSize);
+//    UIGraphicsBeginImageContextWithOptions(itemSize, NO, 0.0f);
+//    CGRect imageRect = CGRectMake(0.0, 0.0, itemSize.width, itemSize.height);
+//    [image drawInRect:imageRect];
+//    self.appRecord.appIcon = UIGraphicsGetImageFromCurrentImageContext();
+//    UIGraphicsEndImageContext();
+
+    //圆角矩形
+//    UIImage *image = [UIImage imageNamed:@"corner"];
+//    UIGraphicsBeginImageContextWithOptions(self.image1.bounds.size, NO, 1.0);
+//    [[UIBezierPath bezierPathWithRoundedRect:self.image1.bounds cornerRadius:50]addClip];
+//    [image drawInRect:self.image1.bounds];
+//    self.image1.image = UIGraphicsGetImageFromCurrentImageContext();
+//    UIGraphicsEndImageContext();
+
 
 @end
