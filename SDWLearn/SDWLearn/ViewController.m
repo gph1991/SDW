@@ -13,11 +13,12 @@
 #import <objc/runtime.h>
 #import "UIImageView+WebCache.h"
 #import "ViewController.h"
+#import "UIImageView+PHDownloader.h"
 
 #define WIDTH 50
 
 
-@interface ViewController ()<UIAlertViewDelegate>
+@interface ViewController ()<UIAlertViewDelegate,UIScrollViewDelegate>
 {
     BOOL pageStillLoading;
     CustomLayer *testLayer;
@@ -31,20 +32,46 @@
 
 @implementation ViewController
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-    
+
     [[SDImageCache sharedImageCache]clearDisk];
 
-    [self.image1 sd_setImageWithURL:[NSURL URLWithString:@"http://img2.selfimg.com.cn/Lself554/2015/10/12/1444646779_w8TQcc.jpg"]];
+    [self.image1 downloadImageWithUrlKey:@"http://img2.selfimg.com.cn/Lself554/2015/10/12/1444646779_w8TQcc.jpg"];
+    
+//    [self.image1 sd_setImageWithURL:[NSURL URLWithString:@"http://img2.selfimg.com.cn/Lself554/2015/10/12/1444646779_w8TQcc.jpg"]];
+    
+    
+    return;
 //    [self.image1 sd_setImageWithURL:[NSURL URLWithString:@"http://img2.selfimg.com.cn/Lself554/2015/10/12/1444646779_w8TQcc.jpg"]];
 //    CAShapeLayer *layer  =[CAShapeLayer layer];
 //    layer.path = [UIBezierPath bezierPathWithRoundedRect:self.view.bounds byRoundingCorners:UIRectCornerAllCorners cornerRadii:CGSizeMake(10, 10)].CGPath;
 //    YFF_BaseModel *model = [[YFF_BaseModel alloc]initWithDataDic:@{@"name":@"tt"}];
     
     
+    UIScrollView *scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 200, 320, 200)];
+    scrollView.contentSize = CGSizeMake(320, 700);
+    scrollView.backgroundColor = [UIColor blueColor];
+    scrollView.delegate = self;
+    [self.view addSubview:scrollView];
     
+    UIView *bb = [[UIView alloc]initWithFrame:CGRectMake(20, 200, 200, 300)];
+    bb.backgroundColor = [UIColor greenColor];
+    [scrollView addSubview:bb];
+}
+
+//
+-(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    NSLog(@"scrollViewDidEndDecelerating");
+}
+
+//
+-(void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+{
+    NSLog(@"scrollViewDidEndDragging:%d",decelerate);
 }
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
