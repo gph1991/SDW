@@ -39,7 +39,16 @@
 
     [[SDImageCache sharedImageCache]clearDisk];
 
-    [self.image1 downloadImageWithUrlKey:@"http://img2.selfimg.com.cn/Lself554/2015/10/12/1444646779_w8TQcc.jpg"];
+    [self.view hitTest:CGPointMake(0, 0) withEvent:nil];
+    
+    UIImage *image = [UIImage imageNamed:@"corner"];
+    UIGraphicsBeginImageContextWithOptions(self.image1.bounds.size, NO, 1.0);
+    [[UIBezierPath bezierPathWithRoundedRect:self.image1.bounds cornerRadius:50]addClip];
+    [image drawInRect:self.image1.bounds];
+    self.image1.image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+//    [self.image1 downloadImageWithUrlKey:@"http://img2.selfimg.com.cn/Lself554/2015/10/12/1444646779_w8TQcc.jpg"];
     
 //    [self.image1 sd_setImageWithURL:[NSURL URLWithString:@"http://img2.selfimg.com.cn/Lself554/2015/10/12/1444646779_w8TQcc.jpg"]];
     

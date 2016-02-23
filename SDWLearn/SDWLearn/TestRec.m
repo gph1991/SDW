@@ -29,4 +29,43 @@
     CGContextDrawPath(context, kCGPathStroke); //绘制路径
 }
 
+- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event
+{
+    UIView *touchView = self;
+    
+    if ([self pointInside:point withEvent:event] &&
+        (!self.hidden) &&
+        self.userInteractionEnabled &&
+        (self.alpha >= 0.01f))
+    {
+        for (UIView *subView in self.subviews)
+        {
+            //注意，这里有坐标转换，将point点转换到subview中，好好理解下
+            CGPoint subPoint = CGPointMake(point.x - subView.frame.origin.x,
+                                           point.y - subView.frame.origin.y);
+            UIView *subTouchView = [subView hitTest:subPoint withEvent:event];
+            
+            if(subTouchView)
+            {
+                //找到touch事件对应的view，停止遍历
+                touchView = subTouchView;
+                break;
+            }
+        }
+    }
+    else
+    {
+        //此点不在该View中，那么连遍历也省了，直接返回nil
+        touchView = nil;
+    }
+    
+    return touchView;
+}
+
+- (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event
+{
+    return CGRectContainsPoint(self.bounds, point);
+}
+
+
 @end

@@ -109,6 +109,7 @@ static PHImageCacheQueue *model = nil;
     {
         [[NSFileManager defaultManager]createFileAtPath:tmpPath contents:data attributes:nil];
     }
+
 }
 
 -(void)clearCache

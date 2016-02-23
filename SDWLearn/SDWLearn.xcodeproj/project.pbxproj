@@ -39,6 +39,7 @@
 		18FE831D1C7C0D5500F925AC /* UIImageView+PHDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FE831C1C7C0D5500F925AC /* UIImageView+PHDownloader.m */; settings = {ASSET_TAGS = (); }; };
 		18FE83201C7C0DB600F925AC /* PHImageCacheQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FE831F1C7C0DB600F925AC /* PHImageCacheQueue.m */; settings = {ASSET_TAGS = (); }; };
 		18FE83231C7C0DC500F925AC /* PHImageDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FE83221C7C0DC500F925AC /* PHImageDownloader.m */; settings = {ASSET_TAGS = (); }; };
+		18FE83251C7C3F4100F925AC /* corner.png in Resources */ = {isa = PBXBuildFile; fileRef = 18FE83241C7C3F4100F925AC /* corner.png */; settings = {ASSET_TAGS = (); }; };
 		51BE76BD1BCC95EB00CE5A62 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 51BE76BC1BCC95EB00CE5A62 /* main.m */; };
 		51BE76C01BCC95EB00CE5A62 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 51BE76BF1BCC95EB00CE5A62 /* AppDelegate.m */; };
 		51BE76C31BCC95EB00CE5A62 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 51BE76C21BCC95EB00CE5A62 /* ViewController.m */; };
@@ -121,6 +122,7 @@
 		18FE831F1C7C0DB600F925AC /* PHImageCacheQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PHImageCacheQueue.m; sourceTree = "<group>"; };
 		18FE83211C7C0DC500F925AC /* PHImageDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PHImageDownloader.h; sourceTree = "<group>"; };
 		18FE83221C7C0DC500F925AC /* PHImageDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PHImageDownloader.m; sourceTree = "<group>"; };
+		18FE83241C7C3F4100F925AC /* corner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = corner.png; sourceTree = "<group>"; };
 		51BE76B71BCC95EB00CE5A62 /* SDWLearn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SDWLearn.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		51BE76BB1BCC95EB00CE5A62 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		51BE76BC1BCC95EB00CE5A62 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -224,6 +226,7 @@
 		51BE76BA1BCC95EB00CE5A62 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				18FE83241C7C3F4100F925AC /* corner.png */,
 				18F7A7A51C4E2F900012EF6D /* wx.png */,
 				18F7A7A61C4E2F900012EF6D /* wx1@2x.png */,
 				51BE76BB1BCC95EB00CE5A62 /* Info.plist */,
@@ -381,6 +384,7 @@
 				51BE76C61BCC95EB00CE5A62 /* Main.storyboard in Resources */,
 				51BE76CB1BCC95EB00CE5A62 /* LaunchScreen.xib in Resources */,
 				51BE76C81BCC95EB00CE5A62 /* Images.xcassets in Resources */,
+				18FE83251C7C3F4100F925AC /* corner.png in Resources */,
 				187E185A1C5B7337006218BA /* Icon-60@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
