@@ -68,7 +68,7 @@
 }
 -(void)clipImage
 {
-    //裁剪图片
+    //压缩图片
     UIImage *image;
     CGSize itemSize = CGSizeMake(50, 50);
     UIGraphicsBeginImageContextWithOptions(itemSize, NO, 0.0f);

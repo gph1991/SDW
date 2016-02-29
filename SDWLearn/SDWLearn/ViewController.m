@@ -32,9 +32,13 @@
 
 @implementation ViewController
 
-
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    NSDictionary *dic = [[NSDictionary alloc]init];
+    _name = dic;
+    _school = dic;
+    
     self.view.backgroundColor = [UIColor whiteColor];
 
     [[SDImageCache sharedImageCache]clearDisk];
