@@ -11,8 +11,7 @@
 
 @interface ViewController : UIViewController
 
-@property(nonatomic,readonly,copy) NSDictionary *name;
-@property(nonatomic,readonly,strong) NSDictionary *school;
+@property(nonatomic,copy) NSString *name;
 
 @end
 

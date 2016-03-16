@@ -6,6 +6,7 @@
 //  Copyright (c) 2015年 gph. All rights reserved.
 //
 
+#import "SecondViewController.h"
 #import "UIImage+Rotate_Flip.h"
 #import "YFF_BaseModel.h"
 #import "CustomLayer.h"
@@ -34,51 +35,35 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    NSDictionary *dic = [[NSDictionary alloc]init];
-    _name = dic;
-    _school = dic;
-    
+    char *s = "gph";
     self.view.backgroundColor = [UIColor whiteColor];
 
-    [[SDImageCache sharedImageCache]clearDisk];
-
-    [self.view hitTest:CGPointMake(0, 0) withEvent:nil];
     
-    UIImage *image = [UIImage imageNamed:@"corner"];
-    UIGraphicsBeginImageContextWithOptions(self.image1.bounds.size, NO, 1.0);
-    [[UIBezierPath bezierPathWithRoundedRect:self.image1.bounds cornerRadius:50]addClip];
-    [image drawInRect:self.image1.bounds];
-    self.image1.image = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
+    [self addObserver:self forKeyPath:@"name" options:NSKeyValueObservingOptionOld|NSKeyValueObservingOptionNew context:s];
     
-//    [self.image1 downloadImageWithUrlKey:@"http://img2.selfimg.com.cn/Lself554/2015/10/12/1444646779_w8TQcc.jpg"];
-    
-//    [self.image1 sd_setImageWithURL:[NSURL URLWithString:@"http://img2.selfimg.com.cn/Lself554/2015/10/12/1444646779_w8TQcc.jpg"]];
-    
-    
-    return;
-//    [self.image1 sd_setImageWithURL:[NSURL URLWithString:@"http://img2.selfimg.com.cn/Lself554/2015/10/12/1444646779_w8TQcc.jpg"]];
-//    CAShapeLayer *layer  =[CAShapeLayer layer];
 //    layer.path = [UIBezierPath bezierPathWithRoundedRect:self.view.bounds byRoundingCorners:UIRectCornerAllCorners cornerRadii:CGSizeMake(10, 10)].CGPath;
 //    YFF_BaseModel *model = [[YFF_BaseModel alloc]initWithDataDic:@{@"name":@"tt"}];
     
     
-    UIScrollView *scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 200, 320, 200)];
-    scrollView.contentSize = CGSizeMake(320, 700);
-    scrollView.backgroundColor = [UIColor blueColor];
-    scrollView.delegate = self;
-    [self.view addSubview:scrollView];
+//    UIScrollView *scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 200, 320, 200)];
+//    scrollView.contentSize = CGSizeMake(320, 700);
+//    scrollView.backgroundColor = [UIColor blueColor];
+//    scrollView.delegate = self;
+//    [self.view addSubview:scrollView];
     
-    UIView *bb = [[UIView alloc]initWithFrame:CGRectMake(20, 200, 200, 300)];
-    bb.backgroundColor = [UIColor greenColor];
-    [scrollView addSubview:bb];
+
+}
+
+-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context
+{
+    NSLog(@"%s",context);
 }
 
 //
 -(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
     NSLog(@"scrollViewDidEndDecelerating");
+    self.name = [NSString stringWithFormat:@"%d",arc4random()%50];
 }
 
 //
@@ -131,8 +116,14 @@
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    [self presentViewController:[[SecondViewController alloc]init] animated:YES completion:nil];
+    
+//    [self keyFrameAnimation1];
 //    [self test];
-    [YYViewHierarchy3D show];
+//    [YYViewHierarchy3D show];
+
+    
+    
     
 //    UIView *tmp = [[UIView alloc]initWithFrame:CGRectMake(60, 60, 60, 60)];
 //    tmp.backgroundColor = [UIColor cyanColor];
@@ -253,5 +244,41 @@
 //    layer.position=[touch locationInView:self.view];
 //    layer.cornerRadius=width/2;
 //}
+
+
+-(void)keyFrameAnimation1
+{
+    
+    UIView *bb = [[UIView alloc]initWithFrame:CGRectMake(20, 200, 20, 30)];
+    bb.backgroundColor = [UIColor greenColor];
+    [self.view addSubview:bb];
+    
+    CGRect boud = CGRectMake(50, 50, 100, 100);
+    
+    CAKeyframeAnimation *animation = [CAKeyframeAnimation animation];
+    animation.keyPath = @"position";
+    animation.path = CGPathCreateWithEllipseInRect(boud, NULL);
+    animation.duration = 4;
+    animation.repeatCount = HUGE_VALF;
+    animation.calculationMode = kCAAnimationPaced;
+    animation.rotationMode = kCAAnimationRotateAuto;
+    animation.additive = YES;
+    [bb.layer addAnimation:animation forKey:@"shake"];
+}
+
+-(void)keyFrameAnimation2
+{
+    UIView *bb = [[UIView alloc]initWithFrame:CGRectMake(20, 200, 20, 30)];
+    bb.backgroundColor = [UIColor greenColor];
+    [self.view addSubview:bb];
+    
+    CAKeyframeAnimation *animation = [CAKeyframeAnimation animation];
+    animation.keyPath = @"position.x";
+    animation.values = @[ @0, @10, @-10, @10, @0 ];
+    animation.keyTimes = @[ @0, @(1 / 6.0), @(3 / 6.0), @(5 / 6.0), @1 ];
+    animation.duration = 0.4;
+    animation.additive = YES;
+    [bb.layer addAnimation:animation forKey:@"shake"];
+}
 
 @end

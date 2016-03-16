@@ -88,7 +88,7 @@
 {
     unsigned int outCount, i;
     objc_property_t *properties = class_copyPropertyList([self class], &outCount);
-    
+
     for (i = 0; i < outCount; i++)
     {
         objc_property_t property = properties[i];
