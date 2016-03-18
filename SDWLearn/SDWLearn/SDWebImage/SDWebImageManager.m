@@ -117,9 +117,11 @@
 {
     NSString *key = [self cacheKeyForURL:url];
     
-    [self.imageCache diskImageExistsWithKey:key completion:^(BOOL isInDiskCache) {
+    [self.imageCache diskImageExistsWithKey:key completion:^(BOOL isInDiskCache)
+    {
         // the completion block of checkDiskCacheForImageWithKey:completion: is always called on the main queue, no need to further dispatch
-        if (completionBlock) {
+        if (completionBlock)
+        {
             completionBlock(isInDiskCache);
         }
     }];
@@ -173,6 +175,7 @@
     
     NSString *key = [self cacheKeyForURL:url];
     
+    //在chchaOperation里设置cancelBlock
     //是否在缓存中
     operation.cacheOperation = [self.imageCache queryDiskCacheForKey:key done:^(UIImage *image, SDImageCacheType cacheType)
     {
@@ -304,7 +307,7 @@
             }];//subOperation
             
             operation.cancelBlock = ^{
-                //关联起来 (operation,subOperation)
+                //用Block将他们关联起来 (operation,subOperation)
                 [subOperation cancel];
                 @synchronized (self.runningOperations) {
                     [self.runningOperations removeObject:weakOperation];
