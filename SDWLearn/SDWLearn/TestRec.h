@@ -10,4 +10,6 @@
 
 @interface TestRec : UIView
 
++(void)test;
+
 @end

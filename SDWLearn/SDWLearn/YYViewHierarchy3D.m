@@ -87,9 +87,10 @@
     {
         oldFrame = self.frame;
     }
-    
+    NSLog(@"tran:%@",NSStringFromCGPoint([gestureRecognizer translationInView:self]));
+    NSLog(@"loca:%@",NSStringFromCGPoint([gestureRecognizer locationInView:self]));
+
     CGPoint change = [gestureRecognizer translationInView:self];
-    
     CGRect newFrame = oldFrame;
     newFrame.origin.x += change.x;
     newFrame.origin.y += change.y;

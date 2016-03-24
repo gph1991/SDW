@@ -6,6 +6,7 @@
 //  Copyright (c) 2015年 gph. All rights reserved.
 //
 
+#import "ChildRec.h"
 #import "ViewController.h"
 #import "YYViewHierarchy3D.h"
 #import "AppDelegate.h"
@@ -30,6 +31,8 @@
     ViewController *rootVC = [story instantiateViewControllerWithIdentifier:@"view"];
 //    UINavigationController *navVC = [[UINavigationController alloc]initWithRootViewController:rootVC];
     self.window.rootViewController = rootVC;
+    
+    [ChildRec test];
     
     return YES;
 }

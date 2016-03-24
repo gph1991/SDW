@@ -38,13 +38,15 @@
     self.view.backgroundColor = [UIColor whiteColor];
 
     [[SDImageCache sharedImageCache]clearDisk];
+    [NSRunLoop currentRunLoop];
 
+    
     [self.image1 downloadImageWithUrlKey:@"http://img2.selfimg.com.cn/Lself554/2015/10/12/1444646779_w8TQcc.jpg"];
     
 //    [self.image1 sd_setImageWithURL:[NSURL URLWithString:@"http://img2.selfimg.com.cn/Lself554/2015/10/12/1444646779_w8TQcc.jpg"]];
     
     
-    return;
+//    return;
 //    [self.image1 sd_setImageWithURL:[NSURL URLWithString:@"http://img2.selfimg.com.cn/Lself554/2015/10/12/1444646779_w8TQcc.jpg"]];
 //    CAShapeLayer *layer  =[CAShapeLayer layer];
 //    layer.path = [UIBezierPath bezierPathWithRoundedRect:self.view.bounds byRoundingCorners:UIRectCornerAllCorners cornerRadii:CGSizeMake(10, 10)].CGPath;
@@ -60,6 +62,17 @@
     UIView *bb = [[UIView alloc]initWithFrame:CGRectMake(20, 200, 200, 300)];
     bb.backgroundColor = [UIColor greenColor];
     [scrollView addSubview:bb];
+}
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    for (int i = 0; i < 10000; i++) {
+        int k = 0;
+        for (int l = 0; l < 10000; l++) {
+            int t = 0;
+            
+        }
+    }
 }
 
 //
@@ -115,7 +128,8 @@
     });
 }
 
--(void)viewDidAppear:(BOOL)animated
+
+-(void)vi1ewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
 //    [self test];

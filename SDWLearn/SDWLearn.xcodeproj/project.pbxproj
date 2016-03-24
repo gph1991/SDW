@@ -29,16 +29,16 @@
 		187D3C851C03FED100586107 /* CustomNav.m in Sources */ = {isa = PBXBuildFile; fileRef = 187D3C841C03FED100586107 /* CustomNav.m */; };
 		187D3C8B1C03FF3600586107 /* PopAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 187D3C8A1C03FF3600586107 /* PopAnimation.m */; };
 		187D3C911C03FFAD00586107 /* NavigationInteractiveTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 187D3C901C03FFAD00586107 /* NavigationInteractiveTransition.m */; };
-		187E185A1C5B7337006218BA /* Icon-60@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 187E18591C5B7337006218BA /* Icon-60@2x.png */; settings = {ASSET_TAGS = (); }; };
+		187E185A1C5B7337006218BA /* Icon-60@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 187E18591C5B7337006218BA /* Icon-60@2x.png */; };
 		18B9BBF21BFF1EBD006AA210 /* RunLoopSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B9BBF11BFF1EBD006AA210 /* RunLoopSource.m */; };
 		18DED6981C02AA6B00659B58 /* YYViewHierarchy3D.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DED6971C02AA6B00659B58 /* YYViewHierarchy3D.m */; };
-		18F7A7A71C4E2F900012EF6D /* wx.png in Resources */ = {isa = PBXBuildFile; fileRef = 18F7A7A51C4E2F900012EF6D /* wx.png */; settings = {ASSET_TAGS = (); }; };
-		18F7A7A81C4E2F900012EF6D /* wx1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18F7A7A61C4E2F900012EF6D /* wx1@2x.png */; settings = {ASSET_TAGS = (); }; };
-		18F7A7AB1C4E34300012EF6D /* UIImage+Rotate_Flip.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F7A7AA1C4E34300012EF6D /* UIImage+Rotate_Flip.m */; settings = {ASSET_TAGS = (); }; };
-		18FE831A1C7C0C2C00F925AC /* NSString+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FE83191C7C0C2C00F925AC /* NSString+MD5.m */; settings = {ASSET_TAGS = (); }; };
-		18FE831D1C7C0D5500F925AC /* UIImageView+PHDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FE831C1C7C0D5500F925AC /* UIImageView+PHDownloader.m */; settings = {ASSET_TAGS = (); }; };
-		18FE83201C7C0DB600F925AC /* PHImageCacheQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FE831F1C7C0DB600F925AC /* PHImageCacheQueue.m */; settings = {ASSET_TAGS = (); }; };
-		18FE83231C7C0DC500F925AC /* PHImageDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FE83221C7C0DC500F925AC /* PHImageDownloader.m */; settings = {ASSET_TAGS = (); }; };
+		18F7A7A71C4E2F900012EF6D /* wx.png in Resources */ = {isa = PBXBuildFile; fileRef = 18F7A7A51C4E2F900012EF6D /* wx.png */; };
+		18F7A7A81C4E2F900012EF6D /* wx1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18F7A7A61C4E2F900012EF6D /* wx1@2x.png */; };
+		18F7A7AB1C4E34300012EF6D /* UIImage+Rotate_Flip.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F7A7AA1C4E34300012EF6D /* UIImage+Rotate_Flip.m */; };
+		18FE831A1C7C0C2C00F925AC /* NSString+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FE83191C7C0C2C00F925AC /* NSString+MD5.m */; };
+		18FE831D1C7C0D5500F925AC /* UIImageView+PHDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FE831C1C7C0D5500F925AC /* UIImageView+PHDownloader.m */; };
+		18FE83201C7C0DB600F925AC /* PHImageCacheQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FE831F1C7C0DB600F925AC /* PHImageCacheQueue.m */; };
+		18FE83231C7C0DC500F925AC /* PHImageDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FE83221C7C0DC500F925AC /* PHImageDownloader.m */; };
 		51BE76BD1BCC95EB00CE5A62 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 51BE76BC1BCC95EB00CE5A62 /* main.m */; };
 		51BE76C01BCC95EB00CE5A62 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 51BE76BF1BCC95EB00CE5A62 /* AppDelegate.m */; };
 		51BE76C31BCC95EB00CE5A62 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 51BE76C21BCC95EB00CE5A62 /* ViewController.m */; };
@@ -46,6 +46,7 @@
 		51BE76C81BCC95EB00CE5A62 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 51BE76C71BCC95EB00CE5A62 /* Images.xcassets */; };
 		51BE76CB1BCC95EB00CE5A62 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 51BE76C91BCC95EB00CE5A62 /* LaunchScreen.xib */; };
 		51BE76D71BCC95EC00CE5A62 /* SDWLearnTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 51BE76D61BCC95EC00CE5A62 /* SDWLearnTests.m */; };
+		FB63B6021C7CABB10008BB3F /* ChildRec.m in Sources */ = {isa = PBXBuildFile; fileRef = FB63B6011C7CABB10008BB3F /* ChildRec.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -134,6 +135,8 @@
 		51BE76D01BCC95EC00CE5A62 /* SDWLearnTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SDWLearnTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		51BE76D51BCC95EC00CE5A62 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		51BE76D61BCC95EC00CE5A62 /* SDWLearnTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SDWLearnTests.m; sourceTree = "<group>"; };
+		FB63B6001C7CABB10008BB3F /* ChildRec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChildRec.h; sourceTree = "<group>"; };
+		FB63B6011C7CABB10008BB3F /* ChildRec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChildRec.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -209,6 +212,8 @@
 				181EA6B21C28026600150C97 /* YFF_BaseModel.m */,
 				183832EF1C1A747C0049F470 /* TestRec.h */,
 				183832F01C1A747C0049F470 /* TestRec.m */,
+				FB63B6001C7CABB10008BB3F /* ChildRec.h */,
+				FB63B6011C7CABB10008BB3F /* ChildRec.m */,
 				183832F21C1A9F650049F470 /* CustomLayer.h */,
 				183832F31C1A9F650049F470 /* CustomLayer.m */,
 				18B9BBF01BFF1EBD006AA210 /* RunLoopSource.h */,
@@ -417,6 +422,7 @@
 				180EB2AA1C474FEC009EE707 /* UIImageView+WebCache.m in Sources */,
 				51BE76C01BCC95EB00CE5A62 /* AppDelegate.m in Sources */,
 				180EB2AB1C474FEC009EE707 /* UIView+WebCacheOperation.m in Sources */,
+				FB63B6021C7CABB10008BB3F /* ChildRec.m in Sources */,
 				18DED6981C02AA6B00659B58 /* YYViewHierarchy3D.m in Sources */,
 				18B9BBF21BFF1EBD006AA210 /* RunLoopSource.m in Sources */,
 				180EB2A11C474FEC009EE707 /* SDWebImageDownloader.m in Sources */,
