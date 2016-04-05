@@ -36,7 +36,16 @@
     [self.view addSubview:picker];
     
     
-    
+    NSURL *url = [[NSBundle mainBundle]URLForResource:@"wx" withExtension:@"png"];
+    CIImage *coreImage = [CIImage imageWithContentsOfURL:url];
+    CIFilter *sepialFilter = [CIFilter filterWithName:@"CIColorControls"];
+    [sepialFilter setValue:coreImage forKey:kCIInputImageKey];
+    [sepialFilter setValue:@(5) forKey:@"inputContrast"];
+    CIContext *context = [CIContext contextWithOptions:nil];
+    CIImage *output = [sepialFilter outputImage];
+    CGImageRef temp = [context createCGImage:output fromRect:[output extent]];
+    UIImage *image = [UIImage imageWithCGImage:temp];
+    [self showAllFilters];
     // Do any additional setup after loading the view.
 }
 
@@ -45,6 +54,15 @@
     [clock setTime:picker.date];
 }
 
+-(void)showAllFilters
+{
+    NSArray *filterNames=[CIFilter filterNamesInCategory:kCICategoryBuiltIn];
+    for (NSString *filterName in filterNames)
+    {
+        CIFilter *filter=[CIFilter filterWithName:filterName];
+        NSLog(@"\r filter:%@\r attributes:%@",filterName,[filter attributes]);
+    }
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

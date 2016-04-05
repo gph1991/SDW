@@ -236,7 +236,7 @@ static NSString *const kCompletedCallbackKey = @"completed";
         }
         return;
     }
-
+    
     dispatch_barrier_sync(self.barrierQueue, ^{
         
         BOOL first = NO;

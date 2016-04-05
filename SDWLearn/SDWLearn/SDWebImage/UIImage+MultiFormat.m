@@ -61,7 +61,7 @@
             CFTypeRef val;
             int exifOrientation;
             val = CFDictionaryGetValue(properties, kCGImagePropertyOrientation);
-            
+//            UIImageOrientationUp;
             if (val)
             {
                 CFNumberGetValue(val, kCFNumberIntType, &exifOrientation);
@@ -85,6 +85,7 @@
 // reference see here: http://sylvana.net/jpegcrop/exif_orientation.html
 + (UIImageOrientation) sd_exifOrientationToiOSOrientation:(int)exifOrientation
 {
+    //以文档为准，注释有误
     UIImageOrientation orientation = UIImageOrientationUp;
     switch (exifOrientation)
     {

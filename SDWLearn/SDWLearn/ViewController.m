@@ -33,11 +33,20 @@
 
 @implementation ViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
+    
     char *s = "gph";
     self.view.backgroundColor = [UIColor whiteColor];
 
+    UIImage *image = [UIImage imageNamed:@"wx"];
+    NSData *data1 = UIImagePNGRepresentation(image);
+    NSString *imageStr = [data1 base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
+    NSData *data2 = [[NSData alloc]initWithBase64EncodedString:imageStr options:NSDataBase64DecodingIgnoreUnknownCharacters];
+    UIImage *image1 = [UIImage imageWithData:data2];
+    
+    [self.image1 sd_setImageWithURL:[NSURL URLWithString:@"http://gphsubmit.applinzi.com/download.jpg"]];
     
     [self addObserver:self forKeyPath:@"name" options:NSKeyValueObservingOptionOld|NSKeyValueObservingOptionNew context:s];
     
