@@ -25,6 +25,7 @@
     UIView *view;
 }
 
+@property (nonatomic,weak) NSObject *obj1;
 @property (weak, nonatomic) IBOutlet UIImageView *image1;
 @property (weak, nonatomic) IBOutlet UIView *upView;
 
@@ -38,13 +39,11 @@
     self.view.backgroundColor = [UIColor whiteColor];
 
     [[SDImageCache sharedImageCache]clearDisk];
-    [NSRunLoop currentRunLoop];
+    
+//    [self.image1 downloadImageWithUrlKey:@"http://gphsubmit.applinzi.com/IMG_0459.jpg"];
+    
+    [self.image1 sd_setImageWithURL:[NSURL URLWithString:@"http://img2.selfimg.com.cn/Lself554/2015/10/12/1444646779_w8TQcc.jpg"]];
 
-    
-    [self.image1 downloadImageWithUrlKey:@"http://img2.selfimg.com.cn/Lself554/2015/10/12/1444646779_w8TQcc.jpg"];
-    
-//    [self.image1 sd_setImageWithURL:[NSURL URLWithString:@"http://img2.selfimg.com.cn/Lself554/2015/10/12/1444646779_w8TQcc.jpg"]];
-    
     
 //    return;
 //    [self.image1 sd_setImageWithURL:[NSURL URLWithString:@"http://img2.selfimg.com.cn/Lself554/2015/10/12/1444646779_w8TQcc.jpg"]];
@@ -62,6 +61,7 @@
     UIView *bb = [[UIView alloc]initWithFrame:CGRectMake(20, 200, 200, 300)];
     bb.backgroundColor = [UIColor greenColor];
     [scrollView addSubview:bb];
+
 }
 -(void)viewDidAppear:(BOOL)animated
 {
