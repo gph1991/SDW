@@ -9,6 +9,10 @@
 #import "SDWebImageManager.h"
 #import <objc/message.h>
 
+
+/**
+ * cancelBlock 包含 取消SDWebImageDownloaderOperation的方法
+ */
 @interface SDWebImageCombinedOperation : NSObject <SDWebImageOperation>
 
 @property (assign, nonatomic, getter = isCancelled) BOOL cancelled;
@@ -155,7 +159,7 @@
     
     //SDWebImageRetryFailed disabled the feature don't try when download failed;
     //SDWebImageRetryFailed enabled the feature to try when download failed??
-
+    //    SDWebImageRetryFailed，失败重试
     //不是SDWebImageRetryFailed 且请求失败过
     if (!url || (!(options & SDWebImageRetryFailed) && isFailedUrl))
     {
@@ -182,6 +186,7 @@
             @synchronized (self.runningOperations) {
                 [self.runningOperations removeObject:operation];
             }
+            
             //if was cancelled ,return immedaite;
             return;
         }
