@@ -38,7 +38,7 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
 
-    [[SDImageCache sharedImageCache]clearDisk];
+//    [[SDImageCache sharedImageCache]clearDisk];
     
 //    [self.image1 downloadImageWithUrlKey:@"http://gphsubmit.applinzi.com/IMG_0459.jpg"];
     

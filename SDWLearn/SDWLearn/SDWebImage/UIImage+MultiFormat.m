@@ -33,9 +33,10 @@
 #endif
     else
     {
+        //    jpeg/png
         image = [[UIImage alloc] initWithData:data];
         UIImageOrientation orientation = [self sd_imageOrientationFromImageData:data];
-        
+
         if (orientation != UIImageOrientationUp)
         {
             image = [UIImage imageWithCGImage:image.CGImage
@@ -51,22 +52,25 @@
 +(UIImageOrientation)sd_imageOrientationFromImageData:(NSData *)imageData
 {
     UIImageOrientation result = UIImageOrientationUp;
+    
     CGImageSourceRef imageSource = CGImageSourceCreateWithData((__bridge CFDataRef)imageData, NULL);
     if (imageSource)
     {
         CFDictionaryRef properties = CGImageSourceCopyPropertiesAtIndex(imageSource, 0, NULL);
-        
+        CGImageSourceCopyPropertiesAtIndex(imageSource, 0, NULL);
         if (properties)
         {
             CFTypeRef val;
             int exifOrientation;
             val = CFDictionaryGetValue(properties, kCGImagePropertyOrientation);
-            
+
             if (val)
             {
                 CFNumberGetValue(val, kCFNumberIntType, &exifOrientation);
                 result = [self sd_exifOrientationToiOSOrientation:exifOrientation];
-            } // else - if it's not set it remains at up
+            }
+            
+            // else - if it's not set it remains at up
             CFRelease((CFTypeRef) properties);
         }
         else

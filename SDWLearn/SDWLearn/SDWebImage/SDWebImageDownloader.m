@@ -234,6 +234,7 @@ static NSString *const kCompletedCallbackKey = @"completed";
         {
             completedBlock(nil, nil, nil, NO);
         }
+        
         return;
     }
 

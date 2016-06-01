@@ -308,6 +308,7 @@ BOOL ImageDataHasPNGPreffix(NSData *data)
     {
         //处理方向
         UIImage *image = [UIImage sd_imageWithData:data];
+        
         //处理images和scale
         image = [self scaledImageForKey:key image:image];
         
@@ -337,7 +338,7 @@ BOOL ImageDataHasPNGPreffix(NSData *data)
         doneBlock(nil, SDImageCacheTypeNone);
         return nil;
     }
-
+    
     //内存缓存
     // First check the in-memory cache...
     UIImage *image = [self imageFromMemoryCacheForKey:key];
@@ -368,7 +369,6 @@ BOOL ImageDataHasPNGPreffix(NSData *data)
                 [self.memCache setObject:diskImage forKey:key cost:cost];
             }
             
-            NSLog(@"即将在dispatch_async执行磁盘doneBlock");
             //must in main thread to update UI
             dispatch_async(dispatch_get_main_queue(), ^{
                 NSLog(@"磁盘doneBlock");

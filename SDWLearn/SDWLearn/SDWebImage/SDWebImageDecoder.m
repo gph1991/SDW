@@ -19,7 +19,7 @@
         // Do not decode animated images
         return image;
     }
-
+    
     CGImageRef imageRef = image.CGImage;
     CGSize imageSize = CGSizeMake(CGImageGetWidth(imageRef), CGImageGetHeight(imageRef));
     CGRect imageRect = (CGRect){.origin = CGPointZero, .size = imageSize};
@@ -29,6 +29,7 @@
 
     int infoMask = (bitmapInfo & kCGBitmapAlphaInfoMask);
     
+    //是否不包含alpha
     BOOL anyNonAlpha = (infoMask == kCGImageAlphaNone ||
             infoMask == kCGImageAlphaNoneSkipFirst ||
             infoMask == kCGImageAlphaNoneSkipLast);

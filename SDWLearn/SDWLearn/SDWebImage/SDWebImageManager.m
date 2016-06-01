@@ -191,8 +191,9 @@
             return;
         }
         
-        //1没有缓存，或者 2强制刷新,就开始下载。通常为1
-        //协议不响应默认为NO
+        //（1没有缓存，或 2强制刷新）&&（协议不响应 或 协议方法返回YES）,就开始下载。通常为1
+        //默认shouldDownloadImageForURL 返回YES
+        //若不想下载某些图片，就实现该方法，并返回NO
         
         if ((!image || options & SDWebImageRefreshCached) && (![self.delegate respondsToSelector:@selector(imageManager:shouldDownloadImageForURL:)] || [self.delegate imageManager:self shouldDownloadImageForURL:url]))
         {
@@ -245,6 +246,7 @@
                         }
                     });
 
+                    //因为网络的错误，记入失败列表(下次若不是强制请求，就不请求)
                     if (error.code != NSURLErrorNotConnectedToInternet && error.code != NSURLErrorCancelled && error.code != NSURLErrorTimedOut)
                     {
                         @synchronized (self.failedURLs) {
@@ -261,6 +263,7 @@
                     {
                         // Image refresh hit the NSURLCache cache, do not call the completion block
                     }
+                    
                     // NOTE: We don't call transformDownloadedImage delegate method on animated images as most transformation code would mangle it
                     else if (downloadedImage && !downloadedImage.images && [self.delegate respondsToSelector:@selector(imageManager:transformDownloadedImage:withURL:)])
                     {
@@ -333,6 +336,7 @@
         }
         else
         {
+            //没有缓存，用户不允许下载图片
             // Image not in cache and download disallowed by delegate
             dispatch_main_sync_safe(^{
                 if (!weakOperation.isCancelled)
@@ -346,7 +350,6 @@
         }
     }];//big block
 
-    NSLog(@"big fun return;");
     // return the value to save with the view
     return operation;
 }

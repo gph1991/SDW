@@ -49,6 +49,7 @@ inline UIImage *SDScaledImageForKey(NSString *key, UIImage *image)
 
             image = scaledImage;
         }
+        
         return image;
     }
 }
