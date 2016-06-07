@@ -25,9 +25,7 @@
     UIView *view;
 }
 
-@property (nonatomic,weak) NSObject *obj1;
 @property (weak, nonatomic) IBOutlet UIImageView *image1;
-@property (weak, nonatomic) IBOutlet UIView *upView;
 
 @end
 
@@ -55,11 +53,13 @@
     }
 }
 
--(void)vi1ewDidAppear:(BOOL)animated
+-(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    [self drawMyLayer];
+
     
-    [self threadMain];
+//    [self threadMain];
 //    [YYViewHierarchy3D show];
     
 //    UIView *tmp = [[UIView alloc]initWithFrame:CGRectMake(60, 60, 60, 60)];
@@ -74,12 +74,10 @@
 //    [view addGestureRecognizer:pan];
 //    [self.view addSubview:view];
 //
-    [self test];
+//    [self test];
 
-    [self drawMyLayer];
-//    UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"警告" message:@"没有相机访问权限，请在设置-隐私-相机中进行设置！" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"设置",nil];
-//    [alertView show];
 }
+
 - (void)pand:(UIPanGestureRecognizer *)gestureRecognizer
 {
     static CGRect oldFrame;
@@ -124,15 +122,20 @@
 #pragma mark 绘制图层
 -(void)drawMyLayer
 {
-    TestRec *recView = [[TestRec alloc]initWithFrame:CGRectMake(150, 150, 100, 100)];
+    TestRec *recView = [[TestRec alloc]initWithFrame:CGRectMake(150, 50, 100, 100)];
     [self.view addSubview:recView];
     
-    UIBezierPath *trackPath =  [UIBezierPath bezierPathWithArcCenter:CGPointMake(200, 350) radius:30 startAngle:0 endAngle:M_PI_2*3 clockwise:1];
+    UIBezierPath *trackPath =  [UIBezierPath bezierPathWithArcCenter:CGPointMake(150, 250) radius:30 startAngle:0 endAngle:M_PI_2*3 clockwise:1];
     CAShapeLayer *layer = [CAShapeLayer layer];
     layer.strokeColor = [UIColor cyanColor].CGColor;
     layer.path = trackPath.CGPath;
-   
     [self.view.layer addSublayer:layer];
+    
+    UIBezierPath *trackPath1 =  [UIBezierPath bezierPathWithArcCenter:CGPointMake(150, 350) radius:30 startAngle:M_PI_2 endAngle:M_PI_2*3 clockwise:1];
+    CAShapeLayer *layer1 = [CAShapeLayer layer];
+    layer1.strokeColor = [UIColor cyanColor].CGColor;
+    layer1.path = trackPath1.CGPath;
+    [self.view.layer addSublayer:layer1];
 //
 //    CGSize size=[UIScreen mainScreen].bounds.size;
 //    

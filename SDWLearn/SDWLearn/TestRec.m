@@ -10,18 +10,13 @@
 
 @implementation TestRec
 
-
-+(void)test
-{
-    NSLog(@"good");
-}
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect
 {
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextSetStrokeColorWithColor(context, [UIColor redColor].CGColor);//填充颜色
-//    CGContextMoveToPoint(context, 160, 180);
+    CGContextMoveToPoint(context, 160, 180);
     CGContextAddArc(context, 50, 50, 30, 0, M_PI_2*3 , 0);
     
     /*

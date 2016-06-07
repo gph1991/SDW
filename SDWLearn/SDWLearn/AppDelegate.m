@@ -30,9 +30,7 @@
     
     ViewController *rootVC = [story instantiateViewControllerWithIdentifier:@"view"];
 //    UINavigationController *navVC = [[UINavigationController alloc]initWithRootViewController:rootVC];
-    self.window.rootViewController = rootVC;
-    
-    [ChildRec test];
+    self.window.rootViewController = rootVC;    
     
     return YES;
 }
