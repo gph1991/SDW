@@ -131,7 +131,7 @@
     layer.path = trackPath.CGPath;
     [self.view.layer addSublayer:layer];
     
-    UIBezierPath *trackPath1 =  [UIBezierPath bezierPathWithArcCenter:CGPointMake(150, 350) radius:30 startAngle:M_PI_2 endAngle:M_PI_2*3 clockwise:1];
+    UIBezierPath *trackPath1 =  [UIBezierPath bezierPathWithArcCenter:CGPointMake(150, 350) radius:30 startAngle:M_PI_2 endAngle:0 clockwise:0];
     CAShapeLayer *layer1 = [CAShapeLayer layer];
     layer1.strokeColor = [UIColor cyanColor].CGColor;
     layer1.path = trackPath1.CGPath;
