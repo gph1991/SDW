@@ -33,7 +33,7 @@
 #endif
     else
     {
-        //    jpeg/png
+        // jpeg/png
         image = [[UIImage alloc] initWithData:data];
         UIImageOrientation orientation = [self sd_imageOrientationFromImageData:data];
 

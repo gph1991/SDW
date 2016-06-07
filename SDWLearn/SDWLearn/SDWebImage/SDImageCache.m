@@ -81,7 +81,6 @@ BOOL ImageDataHasPNGPreffix(NSData *data)
 
         // Init the disk cache
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
- 
         _diskCachePath = [paths[0] stringByAppendingPathComponent:fullNamespace];
 
         dispatch_sync(_ioQueue, ^{
@@ -174,6 +173,7 @@ BOOL ImageDataHasPNGPreffix(NSData *data)
         dispatch_async(self.ioQueue, ^{
             NSData *data = imageData;
 
+            //有图片且（重新计算或没数据）一般不执行
             if (image && (recalculate || !data))
             {
 #if TARGET_OS_IPHONE
@@ -478,7 +478,6 @@ BOOL ImageDataHasPNGPreffix(NSData *data)
                                                    includingPropertiesForKeys:resourceKeys
                                                                       options:NSDirectoryEnumerationSkipsHiddenFiles
                                                                  errorHandler:NULL];
-
         //比当前时间早 maxCacheAge。比这个时间点更早的就该删除
         NSDate *expirationDate = [NSDate dateWithTimeIntervalSinceNow:-self.maxCacheAge];
         NSMutableDictionary *cacheFiles = [NSMutableDictionary dictionary];
@@ -501,7 +500,9 @@ BOOL ImageDataHasPNGPreffix(NSData *data)
             // Remove files that are older than the expiration date;
             NSDate *modificationDate = resourceValues[NSURLContentModificationDateKey];
             
-            if ([[modificationDate laterDate:expirationDate] isEqualToDate:expirationDate])
+            
+            //modificationDate是否是较早的日期。
+            if ([[modificationDate earlierDate:expirationDate] isEqualToDate:modificationDate])
             {
                 //modificationDate older than expireationDate ,will delete
                 [urlsToDelete addObject:fileURL];
@@ -514,6 +515,7 @@ BOOL ImageDataHasPNGPreffix(NSData *data)
             [cacheFiles setObject:resourceValues forKey:fileURL];
         }
         
+        //先清理逾期的
         for (NSURL *fileURL in urlsToDelete)
         {
             [_fileManager removeItemAtURL:fileURL error:nil];
@@ -548,6 +550,7 @@ BOOL ImageDataHasPNGPreffix(NSData *data)
                 }
             }
         }
+        
         if (completionBlock)
         {
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -567,6 +570,7 @@ BOOL ImageDataHasPNGPreffix(NSData *data)
         [application endBackgroundTask:bgTask];
         bgTask = UIBackgroundTaskInvalid;
     }];
+
 
     // Start the long-running task and return immediately.
     [self cleanDiskWithCompletionBlock:^{

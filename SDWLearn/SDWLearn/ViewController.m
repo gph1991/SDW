@@ -38,53 +38,13 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
 
-//    [[SDImageCache sharedImageCache]clearDisk];
-    
-//    [self.image1 downloadImageWithUrlKey:@"http://gphsubmit.applinzi.com/IMG_0459.jpg"];
-    
+    [[SDImageCache sharedImageCache]clearDisk];
     [self.image1 sd_setImageWithURL:[NSURL URLWithString:@"http://img2.selfimg.com.cn/Lself554/2015/10/12/1444646779_w8TQcc.jpg"]];
 
     
-//    return;
-//    [self.image1 sd_setImageWithURL:[NSURL URLWithString:@"http://img2.selfimg.com.cn/Lself554/2015/10/12/1444646779_w8TQcc.jpg"]];
 //    CAShapeLayer *layer  =[CAShapeLayer layer];
 //    layer.path = [UIBezierPath bezierPathWithRoundedRect:self.view.bounds byRoundingCorners:UIRectCornerAllCorners cornerRadii:CGSizeMake(10, 10)].CGPath;
 //    YFF_BaseModel *model = [[YFF_BaseModel alloc]initWithDataDic:@{@"name":@"tt"}];
-    
-    
-    UIScrollView *scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 200, 320, 200)];
-    scrollView.contentSize = CGSizeMake(320, 700);
-    scrollView.backgroundColor = [UIColor blueColor];
-    scrollView.delegate = self;
-    [self.view addSubview:scrollView];
-    
-    UIView *bb = [[UIView alloc]initWithFrame:CGRectMake(20, 200, 200, 300)];
-    bb.backgroundColor = [UIColor greenColor];
-    [scrollView addSubview:bb];
-
-}
--(void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-    for (int i = 0; i < 10000; i++) {
-        int k = 0;
-        for (int l = 0; l < 10000; l++) {
-            int t = 0;
-            
-        }
-    }
-}
-
-//
--(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
-{
-    NSLog(@"scrollViewDidEndDecelerating");
-}
-
-//
--(void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
-{
-    NSLog(@"scrollViewDidEndDragging:%d",decelerate);
 }
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
@@ -95,47 +55,12 @@
     }
 }
 
-- (IBAction)btnDonw:(id)sender
-{
-    self.image1.layer.transform =  CATransform3DRotate(self.image1.layer.transform,M_PI_4/2 , 1, 0, 0);
-    
-//    pageStillLoading = YES;
-//    [NSThread detachNewThreadSelector:@selector(handlerRequest)toTarget:self withObject:nil];
-//    [self.image1 setHidden:YES];
-//    while (pageStillLoading)
-//    {
-//        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
-//    }
-//    
-//    [self.image1 setHidden:NO];
-}
-
-- (IBAction)yRotate:(id)sender
-{
-    self.image1.layer.transform =  CATransform3DRotate(self.image1.layer.transform,M_PI_4/2 , 0, 1, 0);
-}
-
-- (IBAction)zRotate:(id)sender
-{
-    self.image1.layer.transform =  CATransform3DRotate(self.image1.layer.transform,M_PI_4 , 0, 0, 1);
-}
-
--(void)handlerRequest
-{
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        pageStillLoading = NO;
-        NSLog(@"%@",@(pageStillLoading));
-    });
-}
-
-
 -(void)vi1ewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
     
     [self threadMain];
-//    [self test];
-    [YYViewHierarchy3D show];
+//    [YYViewHierarchy3D show];
     
 //    UIView *tmp = [[UIView alloc]initWithFrame:CGRectMake(60, 60, 60, 60)];
 //    tmp.backgroundColor = [UIColor cyanColor];
@@ -149,8 +74,9 @@
 //    [view addGestureRecognizer:pan];
 //    [self.view addSubview:view];
 //
-    
-//    [self drawMyLayer];
+    [self test];
+
+    [self drawMyLayer];
 //    UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"警告" message:@"没有相机访问权限，请在设置-隐私-相机中进行设置！" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"设置",nil];
 //    [alertView show];
 }

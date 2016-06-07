@@ -213,15 +213,21 @@ static NSString *const kCompletedCallbackKey = @"completed";
         //add
         [wself.downloadQueue addOperation:operation];
         
+        //是否是后进先出
         if (wself.executionOrder == SDWebImageDownloaderLIFOExecutionOrder)
         {
             // Emulate LIFO execution order by systematically adding new operations as last operation's dependency
             [wself.lastAddedOperation addDependency:operation];
             wself.lastAddedOperation = operation;
-            //即前面的任务依赖于后面的任务。后面的任务会优先完成
+            //即先添加的任务依赖于后添加的任务。后面的任务会优先完成
         }
+        
+        operation = nil;
     }];
 
+    
+    //上一个方法有阻塞任务(dispatch_barrier_sync)，任务不执行完不会返回。执行完，即createCallback已经执行了（operation初始化完毕）。
+    NSLog(@"return %@",operation);
     return operation;
 }
 
@@ -238,6 +244,8 @@ static NSString *const kCompletedCallbackKey = @"completed";
         return;
     }
 
+    
+    //阻塞任务。不执行完，本方法不会返回。
     dispatch_barrier_sync(self.barrierQueue, ^{
         
         BOOL first = NO;
@@ -261,7 +269,10 @@ static NSString *const kCompletedCallbackKey = @"completed";
             callbacks[kCompletedCallbackKey] = [completedBlock copy];
         }
         
+        //字典的各个value是block。字典包含在数组里面。
         [callbacksForURL addObject:callbacks];
+        
+        
         self.URLCallbacks[url] = callbacksForURL;
 
         if (first)

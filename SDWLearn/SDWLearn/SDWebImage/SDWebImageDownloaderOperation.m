@@ -57,7 +57,8 @@
         _executing = NO;
         _finished = NO;
         _expectedSize = 0;
-        responseFromCached = YES; // Initially wrong until `connection:willCacheResponse:` is called or not called
+        responseFromCached = YES;
+        // Initially wrong until `connection:willCacheResponse:` is called or not called
     }
     
     return self;
@@ -74,6 +75,8 @@
             return;
         }
 
+        
+        //逾期处理
 #if TARGET_OS_IPHONE && __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_4_0
         if ([self shouldContinueWhenAppEntersBackground])
         {
@@ -112,7 +115,7 @@
         {
             // Make sure to run the runloop in our background thread so it can process downloaded data
             // Note: we use a timeout to work around an issue with NSURLConnection cancel under iOS 5
-            //       not waking up the runloop, leading to dead threads (see https://github.com/rs/SDWebImage/issues/466)
+            //       not waking up the runloop, leading to dead threads (see https://github.com/rs/SDWebImage/issues/466 )
             CFRunLoopRunInMode(kCFRunLoopDefaultMode, 10, false);
         }
         else
@@ -120,6 +123,8 @@
             CFRunLoopRun();
         }
 
+        
+        //CFRunLoopRun 后就为YES了
         if (!self.isFinished)
         {
             [self.connection cancel];
@@ -194,6 +199,7 @@
         {
             self.executing = NO;
         }
+        
         if (!self.isFinished)
         {
             self.finished = YES;
@@ -264,6 +270,7 @@
         {
             self.completedBlock(nil, nil, [NSError errorWithDomain:NSURLErrorDomain code:[((NSHTTPURLResponse *)response) statusCode] userInfo:nil], YES);
         }
+        
         CFRunLoopStop(CFRunLoopGetCurrent());
         [self done];
     }
@@ -412,7 +419,7 @@
     
     if (completionBlock)
     {
-        //如果是不使用缓存，且数据来自缓存
+        //如果是要求不使用缓存，但数据来自缓存。就返回nil
         if (self.options & SDWebImageDownloaderIgnoreCachedResponse && responseFromCached)
         {
             completionBlock(nil, nil, nil, YES);
@@ -420,6 +427,7 @@
         else
         {
             UIImage *image = [UIImage sd_imageWithData:self.imageData];
+            //MD5 as key
             NSString *key = [[SDWebImageManager sharedManager] cacheKeyForURL:self.request.URL];
             image = [self scaledImageForKey:key image:image];
             
@@ -428,6 +436,7 @@
             {
                 image = [UIImage decodedImageWithImage:image];
             }
+            
             if (CGSizeEqualToSize(image.size, CGSizeZero))
             {
                 completionBlock(nil, nil, [NSError errorWithDomain:@"SDWebImageErrorDomain" code:0 userInfo:@{NSLocalizedDescriptionKey : @"Downloaded image has 0 pixels"}], YES);
@@ -455,7 +464,8 @@
 
     [self done];
 }
-//将要缓存会调用 即以前没有缓存过
+
+//将要缓存会调用 即以前没有缓存过。缓存过就不会被调用
 - (NSCachedURLResponse *)connection:(NSURLConnection *)connection willCacheResponse:(NSCachedURLResponse *)cachedResponse
 {
     responseFromCached = NO; // If this method is called, it means the response wasn't read from cache
@@ -485,11 +495,13 @@
 {
     if ([challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust])
     {
+        //默认信任，不做验证
         NSURLCredential *credential = [NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust];
         [[challenge sender] useCredential:credential forAuthenticationChallenge:challenge];
     }
     else
     {
+        //以前是否失败过
         if ([challenge previousFailureCount] == 0)
         {
             if (self.credential)
